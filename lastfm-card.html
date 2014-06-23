@@ -1,0 +1,51 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer-ajax/polymer-ajax.html">
+
+<!--
+Element that provide basic last.fm infos based on a given user.
+
+##### Example
+
+    <lastfm-card></lastfm-card>
+
+@element lastfm-card
+@blurb Element that provide basic last.fm infos based on a given user.
+@status alpha
+@homepage http://Granze.github.io/lastfm-card
+-->
+<polymer-element name="lastfm-card" attributes="user">
+
+  <template>
+    <link rel="stylesheet" href="lastfm-card.css" />
+
+    <polymer-ajax url="http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user={{user}}&api_key=d8cacd3e0cc258e27cf95e491f65760d&format=json" auto handleAs="json" response="{{data}}"></polymer-ajax>
+    <h1>My Last.fm infos</h1>
+    <h2><a href="{{data.user.url}}">{{data.user.name}}</a></h2>
+    <img src="{{data.user.image[2]}}" alt=""/>
+    <p>{{data.user.country}}</p>
+    <p>{{data.user.age}}</p>
+
+    <content></content>
+
+  </template>
+
+  <script>
+
+    Polymer('lastfm-card', {
+      /**
+       * The `user` attribute is the only needed parameter.
+       *
+       * @attribute user
+       * @type string
+       */
+      user: 'granzebru',
+
+      ready: function() {
+
+      }
+
+    });
+
+  </script>
+
+</polymer-element>
