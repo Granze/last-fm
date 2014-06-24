@@ -1,4 +1,55 @@
 :host {
   display: block;
-  color: red;
+  width: 300px;
+  padding: 20px;
+  color: #333;
+  border-radius: 0 0 4px 4px;
+  background-color: #fff;
+}
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+.card header {
+  position: relative;
+  height: 45px;
+  padding: 10px;
+  margin: -20px -20px 20px -20px;
+  background-color: #e31b23;
+  background-image: -webkit-linear-gradient(#e31b23, #b32024);
+  background-image:    -moz-linear-gradient(#e31b23, #b32024);
+  background-image:         linear-gradient(#e31b23, #b32024);
+  border: 1px solid #a00;
+  border-bottom: 1px solid #9f081e;
+  box-shadow: rgba(0,0,0,0.3) 0 2px 5px;
+}
+.logo {
+  position: absolute;
+  left: 20px;
+  bottom: 6px;
+  display: inline-block;
+  width: 90px;
+  height: 30px;
+  background-image: url(img/lastfm-logo-red.png);
+}
+.frame {
+  display: inline-block;
+  border: 2px solid #999;
+  border-radius: 2px;
+}
+.frame img {
+  display: block;
+  border-radius: 4px;
+}
+h2 {
+  position: absolute;
+  right: 20px;
+  bottom: 6px;
+  margin: 0 0 0 100px;
+}
+h2 a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
 }
