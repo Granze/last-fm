@@ -1,0 +1,20 @@
+{
+  "name": "lastfm-card",
+  "keywords": "seed, polymer, web-components",
+  "main": "lastfm-card.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.3.1",
+    "polymer-ajax": "Polymer/polymer-ajax#~0.3.0"
+  },
+  "homepage": "https://github.com/Granze/lastfm-card",
+  "_release": "58b517a450",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "58b517a450cd3e5ca854fcf5d64e0547babfaeef"
+  },
+  "_source": "git://github.com/Granze/lastfm-card.git",
+  "_target": "master",
+  "_originalSource": "Granze/lastfm-card",
+  "_direct": true
+}
