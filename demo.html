@@ -5,18 +5,95 @@
   <title>lastfm-card Demo</title>
 
   <script src="../platform/platform.js"></script>
+  <link rel="stylesheet" href="../normalize-css/normalize.css">
   <link rel="import" href="lastfm-card.html">
   <style>
+    *,
+    *:before,
+    *:after {
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
     body {
-      background-color: #e3e3e3;
+      color: #dfdfdf;
+      background-color: #848484;
+    }
+    h1 {
+      font-size: 20px;
+      color: #333;
+    }
+    .center {
+      text-align: center;
+    }
+    .wrapper {
+      width: 300px;
+      margin: 30px auto;
+    }
+    .config {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    form {
+      text-align: left;
+    }
+    input[type=text] {
+      padding: 10px 4px;
+      width: 300px;
+      color: #333;
+    }
+    label {
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    lastfm-card {
+      margin: 0 auto;
     }
   </style>
+  <script>
+    window.onload = function() {
+      var userForm = document.forms[0],
+          card = document.getElementsByTagName('lastfm-card')[0],
+          check = document.querySelectorAll('input[type="checkbox"]');
+
+      userForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var user = document.getElementById('username').value;
+        card.setAttribute('user', user);
+      });
+
+      check[0].addEventListener('click', function () {
+        card.setAttribute('recent', this.checked);
+      });
+
+      check[1].addEventListener('click', function () {
+        card.setAttribute('top', this.checked);
+      });
+
+    }
+  </script>
 </head>
 <body unresolved>
+  <div class="wrapper">
+    <div class="config">
+      <h1>Try the fabolous last.fm card!</h1>
 
-  <p>An `lastfm-card` looks like this:</p>
+      <form id="user-form">
+        <label>
+          <input id="username" type="text" placeholder="Enter a Last.fm username + press enter" autocomplete="off">
+        </label>
+        <br>
+        <!--<input type="checkbox" id="recent" checked>
+        <label for="recent">Show recent tracks</label>
+        <br>
+        <input type="checkbox" id="top" checked>
+        <label for="top">Show top artists</label>-->
+      </form>
+    </div>
+    <lastfm-card></lastfm-card>
 
-  <lastfm-card></lastfm-card>
+    <p class="center">Follow me on twitter <a href="https://twitter.com/granze">@granze</a></p>
+  </div>
 
 </body>
 </html>

@@ -1,27 +1,61 @@
 :host {
   display: block;
   width: 300px;
-  padding: 20px;
   color: #333;
   border-radius: 0 0 4px 4px;
+  font-family: Arial, Helvetica, sans-serif;
   background-color: #fff;
 }
 *,
 *:before,
 *:after {
-  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+a {
+  color: #333;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.card {
+  border: 1px solid #ccc;
+}
+.card section {
+  margin: 0 20px;
+}
+.card section.alt + section.alt {
+  margin-top: 0 !important;
+}
+.card section.alt {
+  margin: 20px 0 0 0;
+  padding: 10px 20px;
+  background-color: #dfdfdf;
+}
+.card section > h3 {
+  margin: -10px -20px 0 -20px;
+  padding: 4px 20px 2px 20px;
+  font-size: 14px;
+  text-shadow: #333 -1px -1px 1px;
+  border-bottom: 2px solid #222;
+  font-weight: normal;
+  color: #dfdfdf;
+  background-color: #555555;
 }
 .card header {
   position: relative;
   height: 45px;
   padding: 10px;
-  margin: -20px -20px 20px -20px;
+  margin: 0 0 20px 0;
   background-color: #e31b23;
   background-image: -webkit-linear-gradient(#e31b23, #b32024);
-  background-image:    -moz-linear-gradient(#e31b23, #b32024);
-  background-image:         linear-gradient(#e31b23, #b32024);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#e31b23), to(#b32024));
+  background-image: linear-gradient(#e31b23, #b32024);
   border: 1px solid #a00;
   border-bottom: 1px solid #9f081e;
+  -webkit-box-shadow: rgba(0,0,0,0.3) 0 2px 5px;
   box-shadow: rgba(0,0,0,0.3) 0 2px 5px;
 }
 .logo {
@@ -33,8 +67,20 @@
   height: 30px;
   background-image: url(img/lastfm-logo-red.png);
 }
+.profile {
+  position: relative;
+  height: 126px;
+  padding-left: 146px;
+}
 .frame {
-  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  overflow: hidden;
+  width: 126px;
+  height: 126px;
+  margin: 0;
   border: 2px solid #999;
   border-radius: 2px;
 }
@@ -42,14 +88,31 @@
   display: block;
   border-radius: 4px;
 }
-h2 {
-  position: absolute;
-  right: 20px;
-  bottom: 6px;
-  margin: 0 0 0 100px;
+h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
 }
-h2 a {
+h1 a {
   text-decoration: none;
-  color: #fff;
-  font-size: 14px;
+  text-transform: capitalize;
+}
+section ul {
+  padding: 0;
+  list-style: none;
+}
+section ol {
+  padding: 0;
+  list-style-position: inside;
+}
+section li {
+ overflow: hidden;
+ margin-bottom: 10px;
+}
+.recent-tracks li img {
+ float: left;
+ margin-right: 10px;
+}
+.recent-tracks p {
+  margin: 10px 0 0 0;
 }

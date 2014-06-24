@@ -5,6 +5,7 @@
   "main": "lastfm-card.html",
   "dependencies": {
     "polymer": "Polymer/polymer#~0.3.1",
-    "polymer-ajax": "Polymer/polymer-ajax#~0.3.0"
+    "polymer-ajax": "Polymer/polymer-ajax#~0.3.0",
+    "normalize-css": "~3.0.1"
   }
 }
