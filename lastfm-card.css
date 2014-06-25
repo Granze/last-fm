@@ -26,11 +26,11 @@ a:hover {
 .card section {
   margin: 0 20px;
 }
-.card section.alt + section.alt {
-  margin-top: 0 !important;
+.card section.profile {
+  margin-bottom: 20px;
 }
 .card section.alt {
-  margin: 20px 0 0 0;
+  margin: 0;
   padding: 10px 20px;
   background-color: #dfdfdf;
 }
@@ -57,6 +57,14 @@ a:hover {
   border-bottom: 1px solid #9f081e;
   -webkit-box-shadow: rgba(0,0,0,0.3) 0 2px 5px;
   box-shadow: rgba(0,0,0,0.3) 0 2px 5px;
+}
+.card header.black {
+  background-color: #4B4B4B;
+  background-image: -webkit-linear-gradient(#4B4B4B, #333);
+  background-image: -moz-linear-gradient(#4b4b4b, #333);
+  background-image: linear-gradient(#4B4B4B, #333);
+  border: 1px solid #2C2C2C;
+  border-bottom: 1px solid #111;
 }
 .logo {
   position: absolute;

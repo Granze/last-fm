@@ -13,19 +13,19 @@ Element that provide basic last.fm info based on a given user.
 @status alpha
 @homepage http://Granze.github.io/lastfm-card
 -->
-<polymer-element name="lastfm-card" attributes="user theme recent artists">
+<polymer-element name="lastfm-card" attributes="user paintItBlack recentTracks topArtists">
 
   <template>
     <link rel="stylesheet" href="../normalize-css/normalize.css">
     <link rel="stylesheet" href="lastfm-card.css">
 
     <polymer-ajax url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.info}}&user={{user}}&api_key={{apiKey}}&format=json" auto handleAs="json" response="{{info}}"></polymer-ajax>
-    <polymer-ajax url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.recentTracks}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.recentTracksLimit}}" auto handleAs="json" response="{{recent}}"></polymer-ajax>
+    <polymer-ajax url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.recentTracks}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.recentTracksLimit}}" auto handleAs="json" response="{{recentTracksData}}"></polymer-ajax>
     <polymer-ajax url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.topArtists}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.topArtistsLimit}}" auto handleAs="json" response="{{artists}}"></polymer-ajax>
 
     <content>
       <div class="card">
-        <header>
+        <header class="{{theme}}">
           <a href="http://www.last.fm" class="logo"></a>
         </header>
         <section class="profile">
@@ -37,26 +37,30 @@ Element that provide basic last.fm info based on a given user.
           </div>
           <p>{{info.user.playcount}} plays since {{info.user.registered['#text']}}</p>
         </section>
-        <section class="recent-tracks alt">
-          <h3>RECENT TRACKS:</h3>
-          <ul>
-            <template repeat="{{track in recent.recenttracks.track}}">
-              <li>
-                <img src="{{track.image[1]['#text']}}" alt="{{track.album['#text']}}">
-                <strong>{{track.artist['#text']}}</strong>
-                <p>{{track.name}}</p>
-              </li>
-            </template>
-          </ul>
-        </section>
-        <section class="top-artists alt">
-          <h3>TOP ARTISTS (overall):</h3>
-          <ol>
-            <template repeat="{{artist in artists.topartists.artist}}">
-              <li>{{artist.name}}</li>
-            </template>
-          </ol>
-        </section>
+        <template  if="{{recentTracks}}">
+          <section class="recent-tracks alt">
+            <h3>RECENT TRACKS:</h3>
+            <ul>
+              <template repeat="{{track in recentTracksData.recenttracks.track}}">
+                <li>
+                  <img src="{{track.image[1]['#text']}}" alt="{{track.album['#text']}}">
+                  <strong>{{track.artist['#text']}}</strong>
+                  <p>{{track.name}}</p>
+                </li>
+              </template>
+            </ul>
+          </section>
+        </template>
+        <template if="{{topArtists}}">
+          <section class="top-artists alt">
+            <h3>TOP ARTISTS (overall):</h3>
+            <ol>
+              <template repeat="{{artist in artists.topartists.artist}}">
+                <li>{{artist.name}}</li>
+              </template>
+            </ol>
+          </section>
+        </template>
       </div>
     </content>
 
@@ -95,37 +99,44 @@ Element that provide basic last.fm info based on a given user.
        */
       user: 'granzebru',
       /**
-       * The `theme` attribute specify the widget color. You have two options: `red` (default) or `black`.
+       * The `paintItBlack` attribute specify the widget color. You have two options: `red` (default) or `black`.
        *
-       * @attribute theme
+       * @attribute paintItBlack
        * @type string
        */
-      theme: 'red',
+      paintItBlack: false,
       /**
-       * The `recent` attribute specify if you want to show the recent played tracks.
+       * The `recentTracks` attribute specify if you want to show the recentTracks played tracks.
        *
-       * @attribute recent
+       * @attribute recentTracks
        * @type boolean
        */
-      recent: true,
+      recentTracks: false,
       /**
-       * The `artists` attribute specify if you want to show the artists played tracks.
+       * The `topArtists` attribute specify if you want to show the topArtists played tracks.
        *
-       * @attribute artists
+       * @attribute topArtists
        * @type boolean
        */
-      artists: true,
+      topArtists: false,
 
       userChanged: function () {
         console.log('user changed');
       },
-      recentChanged: function () {
+      recentTracksChanged: function () {
         console.log('recent tracks changed');
       },
-      artitsChanged: function () {
+      topArtistsChanged: function () {
         console.log('top artitsts changed');
+      },
+      paintItBlackChanged: function () {
+        console.log('paintItBlack changed');
+      },
+      ready: function() {
+        if(this.paintItBlack === true) {
+          this.theme = 'black'
+        }
       }
-
     });
 
   </script>
