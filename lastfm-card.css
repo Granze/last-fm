@@ -1,6 +1,6 @@
 :host {
   display: block;
-  width: 300px;
+  width: 350px;
   color: #333;
   border-radius: 0 0 4px 4px;
   font-family: Arial, Helvetica, sans-serif;
@@ -87,7 +87,7 @@ a:hover {
   display: block;
   overflow: hidden;
   width: 126px;
-  min-height: 90px;
+  min-height: 70px;
   max-height: 126px;
   margin: 0;
   border: 2px solid #999;
