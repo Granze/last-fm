@@ -5,4 +5,4 @@ See the [component page](http://Granze.github.io/lastfm-card) for more informati
 
 Work in progress!
 
-![Last.fm card](http://i.imgur.com/cPgocQ2.png)
+![Last.fm card](http://i.imgur.com/lL9QquA.png)
