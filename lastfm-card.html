@@ -19,9 +19,9 @@ Element that provide basic last.fm card containing info for a given user.
     <link rel="stylesheet" href="../normalize-css/normalize.css">
     <link rel="stylesheet" href="lastfm-card.css">
 
-    <polymer-ajax id="userajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.info}}&user={{user}}&api_key={{apiKey}}&format=json" auto handleAs="json" response="{{info}}"></polymer-ajax>
-    <polymer-ajax id="tracksajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.recentTracks}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.recentTracksLimit}}" auto handleAs="json" response="{{recentTracksData}}"></polymer-ajax>
-    <polymer-ajax id="artistsajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.topArtists}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.topArtistsLimit}}" auto handleAs="json" response="{{topArtistsData}}"></polymer-ajax>
+    <polymer-ajax auto id="userajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.info}}&user={{user}}&api_key={{apiKey}}&format=json" handleAs="json" response="{{info}}"></polymer-ajax>
+    <polymer-ajax id="tracksajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.recentTracks}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.recentTracksLimit}}" handleAs="json" response="{{recentTracksData}}"></polymer-ajax>
+    <polymer-ajax id="artistsajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.topArtists}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.topArtistsLimit}}" handleAs="json" response="{{topArtistsData}}"></polymer-ajax>
 
     <content>
       <div class="card">
@@ -123,6 +123,16 @@ Element that provide basic last.fm card containing info for a given user.
        * @default false
        */
       topArtists: false,
+      recentTracksChanged: function (oldVal, newVal) {
+        if(newVal === true) {
+          this.$.tracksajax.go();
+        }
+      },
+      topArtistsChanged: function (oldVal, newVal) {
+        if(newVal === true) {
+          this.$.artistsajax.go();
+        }
+      },
       paintItBlackChanged: function() {
         if(this.paintItBlack === true) {
           this.theme = 'black';
