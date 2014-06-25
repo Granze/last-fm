@@ -2,15 +2,15 @@
 <link rel="import" href="../polymer-ajax/polymer-ajax.html">
 
 <!--
-Element that provide basic last.fm info based on a given user.
+Element that provide basic last.fm card containing info for a given user.
 
 ##### Example
 
     <lastfm-card></lastfm-card>
 
 @element lastfm-card
-@blurb Element that provide basic last.fm info based on a given user.
-@status alpha
+@blurb Element that provide basic last.fm card containing info for a given user.
+@status beta
 @homepage http://Granze.github.io/lastfm-card
 -->
 <polymer-element name="lastfm-card" attributes="user paintItBlack recentTracks topArtists">
@@ -19,9 +19,9 @@ Element that provide basic last.fm info based on a given user.
     <link rel="stylesheet" href="../normalize-css/normalize.css">
     <link rel="stylesheet" href="lastfm-card.css">
 
-    <polymer-ajax url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.info}}&user={{user}}&api_key={{apiKey}}&format=json" auto handleAs="json" response="{{info}}"></polymer-ajax>
-    <polymer-ajax url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.recentTracks}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.recentTracksLimit}}" auto handleAs="json" response="{{recentTracksData}}"></polymer-ajax>
-    <polymer-ajax url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.topArtists}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.topArtistsLimit}}" auto handleAs="json" response="{{artists}}"></polymer-ajax>
+    <polymer-ajax id="userajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.info}}&user={{user}}&api_key={{apiKey}}&format=json" auto handleAs="json" response="{{info}}"></polymer-ajax>
+    <polymer-ajax id="tracksajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.recentTracks}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.recentTracksLimit}}" auto handleAs="json" response="{{recentTracksData}}"></polymer-ajax>
+    <polymer-ajax id="artistsajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.topArtists}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.topArtistsLimit}}" auto handleAs="json" response="{{topArtistsData}}"></polymer-ajax>
 
     <content>
       <div class="card">
@@ -35,9 +35,9 @@ Element that provide basic last.fm info based on a given user.
           <div class="personal-info">
             <h1><a href="{{info.user.url}}">{{info.user.name}}</a></h1>
           </div>
-          <p>{{info.user.playcount}} plays since {{info.user.registered['#text']}}</p>
+          <p id="plays"><strong>{{info.user.playcount}}</strong> plays since {{info.user.registered['#text']}}</p>
         </section>
-        <template  if="{{recentTracks}}">
+        <template if="{{recentTracks}}">
           <section class="recent-tracks alt">
             <h3>RECENT TRACKS:</h3>
             <ul>
@@ -55,7 +55,7 @@ Element that provide basic last.fm info based on a given user.
           <section class="top-artists alt">
             <h3>TOP ARTISTS (overall):</h3>
             <ol>
-              <template repeat="{{artist in artists.topartists.artist}}">
+              <template repeat="{{artist in topArtistsData.topartists.artist}}">
                 <li>{{artist.name}}</li>
               </template>
             </ol>
@@ -70,16 +70,17 @@ Element that provide basic last.fm info based on a given user.
 
     Polymer('lastfm-card', {
       /**
-       * The `apiKey` attribute is needed to fetch datas from the API service.
+       * The `apiKey` attribute is needed to fetch data from the API service.
        *
        * @attribute apiKey
        * @type string
+       * @default d8cacd3e0cc258e27cf95e491f65760d
        */
       apiKey: 'd8cacd3e0cc258e27cf95e491f65760d',
       /**
-       * The `getInfo` defines what kind of data you'll fetch.
+       * The `getInfo` object contains used in ajax request.
        *
-       * @attribute getInfo
+       * @property getInfo
        * @type object
        */
       created: function() {
@@ -92,17 +93,18 @@ Element that provide basic last.fm info based on a given user.
         }
       },
       /**
-       * The `user` attribute is the only needed parameter.
+       * The `user` attribute is the only mandatory parameter.
        *
        * @attribute user
        * @type string
        */
       user: 'granzebru',
       /**
-       * The `paintItBlack` attribute specify the widget color. You have two options: `red` (default) or `black`.
+       * The `paintItBlack` attribute specify the widget color.
        *
        * @attribute paintItBlack
-       * @type string
+       * @type boolean
+       * @default false
        */
       paintItBlack: false,
       /**
@@ -110,6 +112,7 @@ Element that provide basic last.fm info based on a given user.
        *
        * @attribute recentTracks
        * @type boolean
+       * @default false
        */
       recentTracks: false,
       /**
@@ -117,24 +120,14 @@ Element that provide basic last.fm info based on a given user.
        *
        * @attribute topArtists
        * @type boolean
+       * @default false
        */
       topArtists: false,
-
-      userChanged: function () {
-        console.log('user changed');
-      },
-      recentTracksChanged: function () {
-        console.log('recent tracks changed');
-      },
-      topArtistsChanged: function () {
-        console.log('top artitsts changed');
-      },
-      paintItBlackChanged: function () {
-        console.log('paintItBlack changed');
-      },
-      ready: function() {
+      paintItBlackChanged: function() {
         if(this.paintItBlack === true) {
-          this.theme = 'black'
+          this.theme = 'black';
+        } else {
+          this.theme = 'red';
         }
       }
     });
