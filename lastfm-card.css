@@ -87,10 +87,11 @@ a:hover {
   display: block;
   overflow: hidden;
   width: 126px;
-  height: 126px;
+  min-height: 90px;
+  max-height: 126px;
   margin: 0;
   border: 2px solid #999;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 .frame img {
   display: block;
