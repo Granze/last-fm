@@ -78,12 +78,14 @@ Element that provide basic last.fm info based on a given user.
        * @attribute getInfo
        * @type object
        */
-      getInfo: {
-        info: 'user.getinfo',
-        recentTracks: 'user.getRecentTracks',
-        topArtists: 'user.getTopArtists',
-        recentTracksLimit: 3,
-        topArtistsLimit: 5
+      created: function() {
+        this.getInfo = {
+          info: 'user.getinfo',
+          recentTracks: 'user.getRecentTracks',
+          topArtists: 'user.getTopArtists',
+          recentTracksLimit: 3,
+          topArtistsLimit: 5
+        }
       },
       /**
        * The `user` attribute is the only needed parameter.
