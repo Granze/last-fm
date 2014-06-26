@@ -20,6 +20,9 @@
       background-color: #848484;
       overflow-y: scroll;
     }
+    fieldset {
+      border: none;
+    }
     h1 {
       font-size: 20px;
       color: #333;
@@ -63,18 +66,19 @@
         card.setAttribute('user', user);
       });
 
-      check[0].addEventListener('click', function () {
-        card.setAttribute('recentTracks', this.checked);
-      });
+      document.getElementById('options').addEventListener('click', function (e) {
+        switch (e.target.id) {
+          case 'recent':
+            card.setAttribute('recentTracks', e.target.checked);
+          break;
+          case 'top':
+            card.setAttribute('topArtists', e.target.checked);
+          break;
+          case 'black':
+            card.setAttribute('paintItBlack', e.target.checked);
+        }
 
-      check[1].addEventListener('click', function () {
-        card.setAttribute('topArtists', this.checked);
       });
-
-      check[2].addEventListener('click', function () {
-        card.setAttribute('paintItBlack', this.checked);
-      });
-
     }
   </script>
 </head>
@@ -88,14 +92,16 @@
           <input id="username" type="text" placeholder="Enter a Last.fm username + press enter" autocomplete="off">
         </label>
         <br>
-        <input type="checkbox" id="recent">
-        <label for="recent">Show recent tracks</label>
-        <br>
-        <input type="checkbox" id="top">
-        <label for="top">Show top artists</label>
-        <br>
-        <input type="checkbox" id="black">
-        <label for="black">Paint it black</label>
+        <fieldset id="options">
+          <input type="checkbox" id="recent">
+          <label for="recent">Show recent tracks</label>
+          <br>
+          <input type="checkbox" id="top">
+          <label for="top">Show top artists</label>
+          <br>
+          <input type="checkbox" id="black">
+          <label for="black">Paint it black</label>
+        </fieldset>
       </form>
     </div>
     <lastfm-card></lastfm-card>
