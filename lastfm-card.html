@@ -71,7 +71,8 @@ Element that provide basic last.fm card containing info for a given user.
 
     Polymer('lastfm-card', {
       /**
-       * The `apiKey` attribute is needed to fetch data from the API service.
+       * The API key used to authenticate with Last.fm's API
+       * This should ideally be changed to your own key.
        *
        * @attribute apiKey
        * @type string
@@ -79,7 +80,7 @@ Element that provide basic last.fm card containing info for a given user.
        */
       apiKey: 'd8cacd3e0cc258e27cf95e491f65760d',
       /**
-       * The `getInfo` object contains used in ajax request.
+       * The `getInfo` object contains properties used in ajax request.
        *
        * @property getInfo
        * @type object
@@ -109,7 +110,7 @@ Element that provide basic last.fm card containing info for a given user.
        */
       paintItBlack: false,
       /**
-       * The `recentTracks` attribute specify if you want to show the recentTracks played tracks.
+       * The `recentTracks` attribute specify if you want to show the recent played tracks.
        *
        * @attribute recentTracks
        * @type boolean
@@ -117,13 +118,19 @@ Element that provide basic last.fm card containing info for a given user.
        */
       recentTracks: false,
       /**
-       * The `topArtists` attribute specify if you want to show the topArtists played tracks.
+       * The `topArtists` attribute specify if you want to show the top artists.
        *
        * @attribute topArtists
        * @type boolean
        * @default false
        */
       topArtists: false,
+      /**
+       * The `pimpMyPlayCount` method is a filter used to stylize the player count.
+       *
+       * @method pimpMyPlayCount
+       *
+       */
       pimpMyPlayCount: function(value) {
         if(typeof value !== 'undefined') {
           var pimpedCounter = value.split('').map(function(i) {
@@ -132,6 +139,12 @@ Element that provide basic last.fm card containing info for a given user.
           this.$.plays.innerHTML = pimpedCounter.join('');
         }
       },
+      /**
+       * The `dateConverter` method is a filter used to format the date.
+       *
+       * @method dateConverter
+       *
+       */
       dateConverter: function(value) {
         if(typeof value !== 'undefined') {
           var d = new Date;
