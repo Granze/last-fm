@@ -10,7 +10,7 @@ See the [component page](http://Granze.github.io/lastfm-card) for more informati
 
 ## Demo
 
-> [Check it live](http://addyosmani.github.io/x-imager/index.html).
+> [Check it live](http://granze.github.io/lastfm-card/components/lastfm-card/demo.html).
 
 ## Installation
 
