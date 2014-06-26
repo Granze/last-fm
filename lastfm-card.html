@@ -43,8 +43,8 @@ Element that provide basic last.fm card containing info for a given user.
             <h3>RECENT TRACKS:</h3>
             <ul>
               <template repeat="{{track in recentTracksData.recenttracks.track}}">
-                <li>
-                  <img src="{{track.image[1]['#text']}}" alt="{{track.album['#text']}}">
+                <li nowplaying?="{{track['@attr']}}">
+                  <img class="album" src="{{track.image[1]['#text']}}" alt="{{track.album['#text']}}">
                   <strong>{{track.artist['#text']}}</strong>
                   <p>{{track.name}}</p>
                 </li>
@@ -89,7 +89,7 @@ Element that provide basic last.fm card containing info for a given user.
           info: 'user.getinfo',
           recentTracks: 'user.getRecentTracks',
           topArtists: 'user.getTopArtists',
-          recentTracksLimit: 2,
+          recentTracksLimit: 3,
           topArtistsLimit: 5
         }
       },
@@ -164,7 +164,6 @@ Element that provide basic last.fm card containing info for a given user.
         }
       }
     });
-
   </script>
 
 </polymer-element>
