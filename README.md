@@ -5,4 +5,7 @@ See the [component page](http://Granze.github.io/lastfm-card) for more informati
 
 Work in progress!
 
+####Installation
+`bower install lastfm-card`
+
 ![Last.fm card](http://i.imgur.com/GNOAfVC.png)
