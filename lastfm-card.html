@@ -123,6 +123,14 @@ Element that provide basic last.fm card containing info for a given user.
        * @default false
        */
       topArtists: false,
+      userChanged: function() {
+        if(this.recentTracks === true) {
+          this.$.tracksajax.go();
+        }
+        if(this.topArtists === true) {
+          this.$.artistsajax.go();
+        }
+      },
       recentTracksChanged: function (oldVal, newVal) {
         if(newVal === true) {
           this.$.tracksajax.go();
