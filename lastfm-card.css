@@ -9,8 +9,6 @@
 *,
 *:before,
 *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 a {
@@ -51,17 +49,14 @@ a:hover {
   margin: 0 0 20px 0;
   background-color: #e31b23;
   background-image: -webkit-linear-gradient(#e31b23, #b32024);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#e31b23), to(#b32024));
   background-image: linear-gradient(#e31b23, #b32024);
   border: 1px solid #a00;
   border-bottom: 1px solid #9f081e;
-  -webkit-box-shadow: rgba(0,0,0,0.3) 0 2px 5px;
   box-shadow: rgba(0,0,0,0.3) 0 2px 5px;
 }
 .card header.black {
   background-color: #4B4B4B;
   background-image: -webkit-linear-gradient(#4B4B4B, #333);
-  background-image: -moz-linear-gradient(#4b4b4b, #333);
   background-image: linear-gradient(#4B4B4B, #333);
   border: 1px solid #2C2C2C;
   border-bottom: 1px solid #111;
@@ -79,6 +74,18 @@ a:hover {
   position: relative;
   height: 126px;
   padding-left: 146px;
+}
+.profile p {
+  margin: 6px 0;
+}
+.count-bg {
+  display: inline-block;
+  margin-right: 2px;
+  padding: 2px 3px 0 3px;
+  color: #fff;
+  background: #000000;
+  background: -webkit-linear-gradient(top, #000000 0%, #3f3f3f 40%, #6b6b6b 50%, #3f3f3f 60%, #000000 100%);
+  background: linear-gradient(to bottom,  #000000 0%,#3f3f3f 40%,#6b6b6b 50%,#3f3f3f 60%,#000000 100%);
 }
 .frame {
   position: absolute;
@@ -98,13 +105,12 @@ a:hover {
   border-radius: 4px;
 }
 h1 {
-  margin: 0;
+  margin: 0 0 20px 0;
   padding: 0;
   font-size: 18px;
 }
 h1 a {
   text-decoration: none;
-  text-transform: capitalize;
 }
 section ul {
   padding: 0;

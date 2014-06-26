@@ -35,7 +35,8 @@ Element that provide basic last.fm card containing info for a given user.
           <div class="personal-info">
             <h1><a href="{{info.user.url}}">{{info.user.name}}</a></h1>
           </div>
-          <p id="plays"><strong>{{info.user.playcount}}</strong> plays since {{info.user.registered['#text']}}</p>
+          <p><strong id="plays">{{info.user.playcount | pimpMyPlayCount}}</strong><strong>plays</strong></p>
+          <p>since {{info.user.registered['#text'] | dateConverter}}</p>
         </section>
         <template if="{{recentTracks}}">
           <section class="recent-tracks alt">
@@ -88,7 +89,7 @@ Element that provide basic last.fm card containing info for a given user.
           info: 'user.getinfo',
           recentTracks: 'user.getRecentTracks',
           topArtists: 'user.getTopArtists',
-          recentTracksLimit: 3,
+          recentTracksLimit: 2,
           topArtistsLimit: 5
         }
       },
@@ -123,6 +124,20 @@ Element that provide basic last.fm card containing info for a given user.
        * @default false
        */
       topArtists: false,
+      pimpMyPlayCount: function(value) {
+        if(typeof value !== 'undefined') {
+          var pimpedCounter = value.split('').map(function(i) {
+            return '<span class="count-bg">' + i + '</span>';
+          });
+          this.$.plays.innerHTML = pimpedCounter.join('');
+        }
+      },
+      dateConverter: function(value) {
+        if(typeof value !== 'undefined') {
+          var d = new Date;
+          return d.toDateString('2007-03-16 18:48').substr(4);
+        };
+      },
       userChanged: function() {
         if(this.recentTracks === true) {
           this.$.tracksajax.go();
