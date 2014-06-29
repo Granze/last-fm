@@ -41,6 +41,9 @@ Element that provide basic last.fm card containing info for a given user.
         <template if="{{recentTracks}}">
           <section class="recent-tracks alt">
             <h3>RECENT TRACKS:</h3>
+            <template if="{{!recentTracksData}}">
+              <div class="loading">Loading...</div>
+            </template>
             <ul>
               <template repeat="{{track in recentTracksData.recenttracks.track}}">
                 <li nowplaying?="{{track['@attr']}}">
@@ -55,6 +58,9 @@ Element that provide basic last.fm card containing info for a given user.
         <template if="{{topArtists}}">
           <section class="top-artists alt">
             <h3>TOP ARTISTS (overall):</h3>
+            <template if="{{!topArtistsData}}">
+              <div class="loading">Loading...</div>
+            </template>
             <ol>
               <template repeat="{{artist in topArtistsData.topartists.artist}}">
                 <li>{{artist.name}}</li>

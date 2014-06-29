@@ -88,6 +88,10 @@ a:hover {
   background: -webkit-linear-gradient(top, #000000 0%, #3f3f3f 40%, #6b6b6b 50%, #3f3f3f 60%, #000000 100%);
   background: linear-gradient(to bottom,  #000000 0%,#3f3f3f 40%,#6b6b6b 50%,#3f3f3f 60%,#000000 100%);
 }
+.loading {
+  margin: 20px 0;
+  text-align: center;
+}
 .frame {
   position: absolute;
   left: 0;
@@ -100,6 +104,7 @@ a:hover {
   margin: 0;
   border: 2px solid #999;
   border-radius: 4px;
+  background-color: #333;
 }
 .frame img {
   display: block;
