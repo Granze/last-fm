@@ -159,9 +159,9 @@ Element that provide basic last.fm card containing info for a given user.
        */
       dateConverter: function(value) {
         if(typeof value !== 'undefined') {
-          var d = new Date;
-          return d.toDateString('2007-03-16 18:48').substr(4);
-        };
+          var d = new Date(value);
+          return d.toDateString().substr(4);
+        }
       },
       userChanged: function() {
         if(this.recentTracks === true) {
