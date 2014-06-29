@@ -28,16 +28,22 @@ Element that provide basic last.fm card containing info for a given user.
         <header class="{{theme}}">
           <a href="http://www.last.fm" class="logo"></a>
         </header>
-        <section class="profile">
-          <figure class="frame">
-            <img src="{{info.user.image[2]['#text']}}" alt="">
-          </figure>
-          <div class="personal-info">
-            <h1><a href="{{info.user.url}}">{{info.user.name}}</a></h1>
-          </div>
-          <p><strong id="plays">{{info.user.playcount | pimpMyPlayCount}}</strong><strong>plays</strong></p>
-          <p>since {{info.user.registered['#text'] | dateConverter}}</p>
-        </section>
+        <template if="{{info.error}}">
+          <div class="no-user">{{info.message}}</div>
+        </template>
+        <template if="{{!info.error}}">
+          <section class="profile">
+            <figure class="frame">
+              <img src="{{info.user.image[2]['#text']}}" alt="">
+            </figure>
+            <div class="personal-info">
+              <h1><a href="{{info.user.url}}">{{info.user.name}}</a></h1>
+            </div>
+            <p><strong id="plays">{{info.user.playcount | pimpMyPlayCount}}</strong><strong>plays</strong></p>
+
+            <p>since {{info.user.registered['#text'] | dateConverter}}</p>
+          </section>
+        </template>
         <template if="{{recentTracks}}">
           <section class="recent-tracks alt">
             <h3>RECENT TRACKS:</h3>
