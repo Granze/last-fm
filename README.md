@@ -28,7 +28,7 @@ Install using [Bower](http://bower.io):
 | `user`         | string  | granzebru | The username you'll fetch data for. |
 | `paintItBlack` | boolean | false     | Theme color (red or black).         |
 | `recentTracks` | boolean | false     | Show recent played tracks panel.    |
-| `topArtists`   | boolean | false     | Show to artists panel.              |
+| `topArtists`   | boolean | false     | Show top artists panel.             |
 
 ## License
 
