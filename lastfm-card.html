@@ -1,5 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../polymer-ajax/polymer-ajax.html">
+<link rel="import" href="../core-ajax/core-ajax.html">
 
 <!--
 Element that provide basic last.fm card containing info for a given user.
@@ -19,9 +19,9 @@ Element that provide basic last.fm card containing info for a given user.
     <link rel="stylesheet" href="../normalize-css/normalize.css">
     <link rel="stylesheet" href="lastfm-card.css">
 
-    <polymer-ajax auto id="userajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.info}}&user={{user}}&api_key={{apiKey}}&format=json" handleAs="json" response="{{info}}"></polymer-ajax>
-    <polymer-ajax id="tracksajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.recentTracks}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.recentTracksLimit}}" handleAs="json" response="{{recentTracksData}}"></polymer-ajax>
-    <polymer-ajax id="artistsajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.topArtists}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.topArtistsLimit}}" handleAs="json" response="{{topArtistsData}}"></polymer-ajax>
+    <core-ajax auto id="userajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.info}}&user={{user}}&api_key={{apiKey}}&format=json" handleAs="json" response="{{info}}"></core-ajax>
+    <core-ajax id="tracksajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.recentTracks}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.recentTracksLimit}}" handleAs="json" response="{{recentTracksData}}"></core-ajax>
+    <core-ajax id="artistsajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.topArtists}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.topArtistsLimit}}" handleAs="json" response="{{topArtistsData}}"></core-ajax>
 
     <content>
       <div class="card">
