@@ -39,7 +39,14 @@ Element that provide basic last.fm card containing info for a given user.
             <div class="personal-info">
               <h1><a href="{{info.user.url}}">{{info.user.name}}</a></h1>
             </div>
-            <p><strong id="plays">{{info.user.playcount | pimpMyPlayCount}}</strong><strong>plays</strong></p>
+            <p>
+              <strong id="plays">
+                <template repeat="{{digit in info.user.playcount | numberToArray}}">
+                  <span class="count-bg">{{digit}}</span>
+                </template>
+              </strong>
+              <strong>plays</strong>
+            </p>
 
             <p>since {{info.user.registered['#text'] | dateConverter}}</p>
           </section>
@@ -138,18 +145,13 @@ Element that provide basic last.fm card containing info for a given user.
        */
       topArtists: false,
       /**
-       * The `pimpMyPlayCount` method is a filter used to stylize the player count.
+       * The `numberToArray` method is a filter used to stylize the player count.
        *
-       * @method pimpMyPlayCount
+       * @method numberToArray
        *
        */
-      pimpMyPlayCount: function(value) {
-        if(typeof value !== 'undefined') {
-          var pimpedCounter = value.split('').map(function(i) {
-            return '<span class="count-bg">' + i + '</span>';
-          });
-          this.$.plays.innerHTML = pimpedCounter.join('');
-        }
+      numberToArray: function(number) {
+        return (number || '').split('');
       },
       /**
        * The `dateConverter` method is a filter used to format the date.
