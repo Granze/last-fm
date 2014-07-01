@@ -20,12 +20,12 @@ Element that provide basic last.fm card containing info for a given user.
     <link rel="stylesheet" href="lastfm-card.css">
 
     <core-ajax auto id="userajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.info}}&user={{user}}&api_key={{apiKey}}&format=json" handleAs="json" response="{{info}}"></core-ajax>
-    <core-ajax id="tracksajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.recentTracks}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.recentTracksLimit}}" handleAs="json" response="{{recentTracksData}}"></core-ajax>
-    <core-ajax id="artistsajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.topArtists}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.topArtistsLimit}}" handleAs="json" response="{{topArtistsData}}"></core-ajax>
+    <core-ajax auto="{{recentTracks}}" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.recentTracks}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.recentTracksLimit}}" handleAs="json" response="{{recentTracksData}}"></core-ajax>
+    <core-ajax auto="{{topArtists}}" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.topArtists}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.topArtistsLimit}}" handleAs="json" response="{{topArtistsData}}"></core-ajax>
 
     <content>
       <div class="card">
-        <header class="{{theme}}">
+        <header class="{{ { black: paintItBlack } | tokenList }}">
           <a href="http://www.last.fm" class="logo"></a>
         </header>
         <template if="{{info.error}}">
@@ -161,31 +161,6 @@ Element that provide basic last.fm card containing info for a given user.
         if(typeof value !== 'undefined') {
           var d = new Date(value);
           return d.toDateString().substr(4);
-        }
-      },
-      userChanged: function() {
-        if(this.recentTracks === true) {
-          this.$.tracksajax.go();
-        }
-        if(this.topArtists === true) {
-          this.$.artistsajax.go();
-        }
-      },
-      recentTracksChanged: function (oldVal, newVal) {
-        if(newVal === true) {
-          this.$.tracksajax.go();
-        }
-      },
-      topArtistsChanged: function (oldVal, newVal) {
-        if(newVal === true) {
-          this.$.artistsajax.go();
-        }
-      },
-      paintItBlackChanged: function() {
-        if(this.paintItBlack === true) {
-          this.theme = 'black';
-        } else {
-          this.theme = 'red';
         }
       }
     });
