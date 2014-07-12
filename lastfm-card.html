@@ -16,7 +16,6 @@ Element that provide basic last.fm card containing info for a given user.
 <polymer-element name="lastfm-card" attributes="apiKey user paintItBlack recentTracks topArtists">
 
   <template>
-    <link rel="stylesheet" href="../normalize-css/normalize.css">
     <link rel="stylesheet" href="lastfm-card.css">
 
     <core-ajax auto id="userajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.info}}&user={{user}}&api_key={{apiKey}}&format=json" handleAs="json" response="{{info}}"></core-ajax>

@@ -1,6 +1,6 @@
 {
   "name": "lastfm-card",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "authors": [
     "Maurizio Mangione <granzebru@gmail.com>"
   ],
@@ -22,10 +22,6 @@
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#~0.3.1",
-    "normalize-css": "~3.0.1",
     "core-ajax": "Polymer/core-ajax#~0.3.3"
-  },
-  "resolutions": {
-    "polymer": ">=0.3.0 <1.0.0"
   }
 }
