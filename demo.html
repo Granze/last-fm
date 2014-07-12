@@ -5,7 +5,6 @@
   <title>lastfm-card Demo</title>
 
   <script src="../platform/platform.js"></script>
-  <link rel="stylesheet" href="../normalize-css/normalize.css">
   <link rel="import" href="lastfm-card.html">
   <style>
     *,
@@ -15,24 +14,41 @@
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
     }
+    a {
+      color: #333;
+    }
+    a:hover {
+      color: #ccc;
+      text-decoration: none;
+      background-color: #000;
+    }
     body {
-      color: #dfdfdf;
-      background-color: #848484;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #333;
+      font-size: 14px;
+      background-color: #ccc;
       overflow-y: scroll;
     }
     fieldset {
       border: none;
     }
     h1 {
-      font-size: 20px;
-      color: #333;
+      font-size: 26px;
+      text-align: center;
     }
     .center {
       text-align: center;
     }
     .wrapper {
-      width: 350px;
+      width: 800px;
+      font-size: 0;
       margin: 30px auto;
+    }
+    .col {
+      width: 400px;
+      font-size: 14px;
+      display: inline-block;
+      vertical-align: top;
     }
     .config {
       margin-bottom: 20px;
@@ -84,30 +100,33 @@
 </head>
 <body unresolved>
   <div class="wrapper">
-    <div class="config">
-      <h1>Try the fabulous last.fm card!</h1>
+    <h1>&lt;lastfm-card&gt;&lt;/lastfm-card&gt;</h1>
+    <div class="col">
+      <div class="config">
 
-      <form id="user-form">
-        <label>
-          <input id="username" type="text" placeholder="Enter a Last.fm username + press enter" autocomplete="off">
-        </label>
-        <br>
-        <fieldset id="options">
-          <input type="checkbox" id="recent">
-          <label for="recent">Show recent tracks</label>
+        <form id="user-form">
+          <label>
+            <input id="username" type="text" placeholder="Enter a Last.fm username + press enter" autocomplete="off">
+          </label>
           <br>
-          <input type="checkbox" id="top">
-          <label for="top">Show top artists</label>
-          <br>
-          <input type="checkbox" id="black">
-          <label for="black">Paint it black</label>
-        </fieldset>
-      </form>
+          <fieldset id="options">
+            <input type="checkbox" id="recent">
+            <label for="recent">Show recent tracks</label>
+            <br>
+            <input type="checkbox" id="top">
+            <label for="top">Show top artists</label>
+            <br>
+            <input type="checkbox" id="black">
+            <label for="black">Paint it black</label>
+          </fieldset>
+        </form>
+      </div>
     </div>
-    <lastfm-card></lastfm-card>
-
-    <p class="center">Follow me on twitter <a href="https://twitter.com/granze">@granze</a></p>
+    <div class="col">
+      <lastfm-card></lastfm-card>
+    </div>
   </div>
+  <p class="center"><a href="https://github.com/Granze/lastfm-card">Source code on Github</a> | Follow me on twitter <a href="https://twitter.com/granze">@granze</a></p>
 
 </body>
 </html>
