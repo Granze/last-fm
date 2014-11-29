@@ -21,10 +21,7 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "~0.4.1",
-    "core-ajax": "Polymer/core-ajax#~0.4.1"
-  },
-  "resolutions": {
-    "core-ajax": "~0.4.1"
+    "polymer": "~0.5.1",
+    "core-ajax": "Polymer/core-ajax#~0.5.1"
   }
 }
