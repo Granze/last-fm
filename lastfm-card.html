@@ -22,66 +22,64 @@ Element that provide basic last.fm card containing info for a given user.
     <core-ajax auto="{{recentTracks}}" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.recentTracks}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.recentTracksLimit}}" handleAs="json" response="{{recentTracksData}}"></core-ajax>
     <core-ajax auto="{{topArtists}}" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.topArtists}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.topArtistsLimit}}" handleAs="json" response="{{topArtistsData}}"></core-ajax>
 
-    <content>
-      <div class="card">
-        <header class="{{ { black: paintItBlack } | tokenList }}">
-          <a href="http://www.last.fm" class="logo"></a>
-        </header>
-        <template if="{{info.error}}">
-          <div class="no-user">{{info.message}}</div>
-        </template>
-        <template if="{{!info.error}}">
-          <section class="profile">
-            <figure class="frame">
-              <img src="{{info.user.image[2]['#text']}}" alt="">
-            </figure>
-            <div class="personal-info">
-              <h1><a href="{{info.user.url}}">{{info.user.name}}</a></h1>
-            </div>
-            <p>
-              <strong id="plays">
-                <template repeat="{{digit in info.user.playcount | numberToArray}}">
-                  <span class="count-bg">{{digit}}</span>
-                </template>
-              </strong>
-              <strong>plays</strong>
-            </p>
+    <div class="card">
+      <header class="{{ { black: paintItBlack } | tokenList }}">
+        <a href="http://www.last.fm" class="logo"></a>
+      </header>
+      <template if="{{info.error}}">
+        <div class="no-user">{{info.message}}</div>
+      </template>
+      <template if="{{!info.error}}">
+        <section class="profile">
+          <figure class="frame">
+            <img src="{{info.user.image[2]['#text']}}" alt="">
+          </figure>
+          <div class="personal-info">
+            <h1><a href="{{info.user.url}}">{{info.user.name}}</a></h1>
+          </div>
+          <p>
+            <strong id="plays">
+              <template repeat="{{digit in info.user.playcount | numberToArray}}">
+                <span class="count-bg">{{digit}}</span>
+              </template>
+            </strong>
+            <strong>plays</strong>
+          </p>
 
-            <p>since {{info.user.registered['#text'] | dateConverter}}</p>
-          </section>
-        </template>
-        <template if="{{recentTracks}}">
-          <section class="recent-tracks alt">
-            <h3>RECENT TRACKS:</h3>
-            <template if="{{!recentTracksData}}">
-              <div class="loading">Loading...</div>
+          <p>since {{info.user.registered['#text'] | dateConverter}}</p>
+        </section>
+      </template>
+      <template if="{{recentTracks}}">
+        <section class="recent-tracks alt">
+          <h3>RECENT TRACKS:</h3>
+          <template if="{{!recentTracksData}}">
+            <div class="loading">Loading...</div>
+          </template>
+          <ul>
+            <template repeat="{{track in recentTracksData.recenttracks.track}}">
+              <li nowplaying?="{{track['@attr']}}">
+                <img class="album" src="{{track.image[1]['#text']}}" alt="{{track.album['#text']}}">
+                <strong>{{track.artist['#text']}}</strong>
+                <p>{{track.name}}</p>
+              </li>
             </template>
-            <ul>
-              <template repeat="{{track in recentTracksData.recenttracks.track}}">
-                <li nowplaying?="{{track['@attr']}}">
-                  <img class="album" src="{{track.image[1]['#text']}}" alt="{{track.album['#text']}}">
-                  <strong>{{track.artist['#text']}}</strong>
-                  <p>{{track.name}}</p>
-                </li>
-              </template>
-            </ul>
-          </section>
-        </template>
-        <template if="{{topArtists}}">
-          <section class="top-artists alt">
-            <h3>TOP ARTISTS (overall):</h3>
-            <template if="{{!topArtistsData}}">
-              <div class="loading">Loading...</div>
+          </ul>
+        </section>
+      </template>
+      <template if="{{topArtists}}">
+        <section class="top-artists alt">
+          <h3>TOP ARTISTS (overall):</h3>
+          <template if="{{!topArtistsData}}">
+            <div class="loading">Loading...</div>
+          </template>
+          <ol>
+            <template repeat="{{artist in topArtistsData.topartists.artist}}">
+              <li>{{artist.name}}</li>
             </template>
-            <ol>
-              <template repeat="{{artist in topArtistsData.topartists.artist}}">
-                <li>{{artist.name}}</li>
-              </template>
-            </ol>
-          </section>
-        </template>
-      </div>
-    </content>
+          </ol>
+        </section>
+      </template>
+    </div>
 
   </template>
 
