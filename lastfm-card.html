@@ -46,7 +46,7 @@ Element that provide basic last.fm card containing info for a given user.
             <strong>plays</strong>
           </p>
 
-          <p>since {{info.user.registered['#text'] | dateConverter}}</p>
+          <p>since {{info.user.registered.unixtime | dateConverter}}</p>
         </section>
       </template>
       <template if="{{recentTracks}}">
@@ -158,7 +158,7 @@ Element that provide basic last.fm card containing info for a given user.
        */
       dateConverter: function(value) {
         if(typeof value !== 'undefined') {
-          var d = new Date(value);
+          var d = new Date(value*1000);
           return d.toDateString().substr(4);
         }
       }
