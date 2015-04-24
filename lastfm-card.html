@@ -1,5 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../core-ajax/core-ajax.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
 
 <!--
 Element that provide basic last.fm card containing info for a given user.
@@ -13,26 +13,177 @@ Element that provide basic last.fm card containing info for a given user.
 @status beta
 @homepage http://Granze.github.io/lastfm-card
 -->
-<polymer-element name="lastfm-card" attributes="apiKey user paintItBlack recentTracks topArtists">
+<dom-module id="lastfm-card">
+  <style>
+    :host {
+      display: block;
+      width: 350px;
+      color: #333;
+      border-radius: 0 0 4px 4px;
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: left;
+      background-color: #fff;
+    }
+    *,
+    *:before,
+    *:after {
+      box-sizing: border-box;
+    }
+    a {
+      color: #333;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
 
-  <template>
-    <link rel="stylesheet" href="lastfm-card.css">
+    .card {
+      border: 1px solid #ccc;
+    }
+    .card section {
+      margin: 0 20px;
+    }
+    .card section.profile {
+      margin-bottom: 20px;
+    }
+    .card section.alt {
+      margin: 0;
+      padding: 10px 20px;
+      background-color: #dfdfdf;
+    }
+    .card section > h3 {
+      margin: -10px -20px 0 -20px;
+      padding: 4px 20px 2px 20px;
+      font-size: 14px;
+      text-shadow: #333 -1px -1px 1px;
+      border-bottom: 2px solid #222;
+      font-weight: normal;
+      color: #dfdfdf;
+      background-color: #555555;
+    }
+    .card header {
+      position: relative;
+      height: 45px;
+      padding: 10px;
+      margin: 0 0 20px 0;
+      background-color: #e31b23;
+      background-image: -webkit-linear-gradient(#e31b23, #b32024);
+      background-image: linear-gradient(#e31b23, #b32024);
+      border: 1px solid #a00;
+      border-bottom: 1px solid #9f081e;
+      box-shadow: rgba(0,0,0,0.3) 0 2px 5px;
+    }
+    .card header.black {
+      background-color: #4B4B4B;
+      background-image: -webkit-linear-gradient(#4B4B4B, #333);
+      background-image: linear-gradient(#4B4B4B, #333);
+      border: 1px solid #2C2C2C;
+      border-bottom: 1px solid #111;
+    }
+    .logo {
+      position: absolute;
+      left: 20px;
+      bottom: 6px;
+      display: inline-block;
+      width: 90px;
+      height: 30px;
+      background-image: url(img/lastfm-logo-red.png);
+    }
+    .profile {
+      position: relative;
+      height: 126px;
+      padding-left: 146px;
+    }
+    .profile p {
+      margin: 6px 0;
+    }
+    #plays {
+      font-size: 0;
+    }
+    .count-bg {
+      display: inline-block;
+      margin-right: 2px;
+      padding: 2px 3px 0 3px;
+      font-size: 16px;
+      color: #fff;
+      background: #000000;
+      background: -webkit-linear-gradient(top, #000000 0%, #3f3f3f 40%, #6b6b6b 50%, #3f3f3f 60%, #000000 100%);
+      background: linear-gradient(to bottom,  #000000 0%,#3f3f3f 40%,#6b6b6b 50%,#3f3f3f 60%,#000000 100%);
+    }
+    .loading, .no-user {
+      margin: 20px 0;
+      text-align: center;
+    }
+    .frame {
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: block;
+      overflow: hidden;
+      width: 126px;
+      min-height: 70px;
+      max-height: 126px;
+      margin: 0;
+      border: 2px solid #999;
+      border-radius: 4px;
+      background-color: #333;
+    }
+    .frame img {
+      display: block;
+      border-radius: 4px;
+    }
+    h1 {
+      margin: 0 0 20px 0;
+      padding: 0;
+      font-size: 18px;
+    }
+    h1 a {
+      text-decoration: none;
+    }
+    section ul {
+      padding: 0;
+      list-style: none;
+    }
+    section ol {
+      padding: 0;
+      list-style-position: inside;
+    }
+    section li {
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .recent-tracks li img {
+      float: left;
+      margin-right: 10px;
+      width: 64px;
+      height: 64px;
+      background-color: #333;
+    }
+    .recent-tracks li[nowplaying] {
+      background: transparent url(img/icon-eq.gif) no-repeat right top;
+    }
+    .recent-tracks p {
+      margin: 10px 0 0 0;
+    }
+  </style>
 
-    <core-ajax auto id="userajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.info}}&user={{user}}&api_key={{apiKey}}&format=json" handleAs="json" response="{{info}}"></core-ajax>
-    <core-ajax auto="{{recentTracks}}" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.recentTracks}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.recentTracksLimit}}" handleAs="json" response="{{recentTracksData}}"></core-ajax>
-    <core-ajax auto="{{topArtists}}" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.topArtists}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.topArtistsLimit}}" handleAs="json" response="{{topArtistsData}}"></core-ajax>
+
+  <template is="x-autobind">
+
+    <iron-ajax auto id="userajax" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.info}}&user={{user}}&api_key={{apiKey}}&format=json" handleas="json" on-response="{{info}}"></iron-ajax>
+    <!-- iron-ajax auto="{{recentTracks}}" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.recentTracks}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.recentTracksLimit}}" handleAs="json" response="{{recentTracksData}}"></iron-ajax -->
+    <!-- iron-ajax auto="{{topArtists}}" url="http://ws.audioscrobbler.com/2.0/?method={{getInfo.topArtists}}&user={{user}}&api_key={{apiKey}}&format=json&limit={{getInfo.topArtistsLimit}}" handleAs="json" response="{{topArtistsData}}"></iron-ajax -->
 
     <div class="card">
       <header class="{{ { black: paintItBlack } | tokenList }}">
         <a href="http://www.last.fm" class="logo"></a>
       </header>
-      <template if="{{info.error}}">
+      <!-- template if="{{info.error}}" -->
         <div class="no-user">{{info.message}}</div>
-      </template>
-      <template if="{{!info.error}}">
+      <!-- /template -->
+      <!-- template if="{{!info.error}}" -->
         <section class="profile">
           <figure class="frame">
-            <img src="{{info.user.image[2]['#text']}}" alt="">
+            <!-- img src="{{info.user.image[2]['#text']}}" alt="" -->
           </figure>
           <div class="personal-info">
             <h1><a href="{{info.user.url}}">{{info.user.name}}</a></h1>
@@ -48,121 +199,138 @@ Element that provide basic last.fm card containing info for a given user.
 
           <p>since {{info.user.registered.unixtime | dateConverter}}</p>
         </section>
-      </template>
-      <template if="{{recentTracks}}">
+      <!-- /template -->
+      <!-- template if="{{recentTracks}}" -->
         <section class="recent-tracks alt">
           <h3>RECENT TRACKS:</h3>
-          <template if="{{!recentTracksData}}">
+          <!-- template if="{{!recentTracksData}}" -->
             <div class="loading">Loading...</div>
-          </template>
+          <!-- /template -->
           <ul>
-            <template repeat="{{track in recentTracksData.recenttracks.track}}">
+            <!-- template repeat="{{track in recentTracksData.recenttracks.track}}" -->
               <li nowplaying?="{{track['@attr']}}">
-                <img class="album" src="{{track.image[1]['#text']}}" alt="{{track.album['#text']}}">
+                <!-- img class="album" src="{{track.image[1]['#text']}}" alt="{{track.album['#text']}}" -->
                 <strong>{{track.artist['#text']}}</strong>
                 <p>{{track.name}}</p>
               </li>
-            </template>
+            <!-- /template-->
           </ul>
         </section>
-      </template>
-      <template if="{{topArtists}}">
+      <!-- /template -->
+      <!-- template if="{{topArtists}}" -->
         <section class="top-artists alt">
           <h3>TOP ARTISTS (overall):</h3>
           <template if="{{!topArtistsData}}">
             <div class="loading">Loading...</div>
           </template>
           <ol>
-            <template repeat="{{artist in topArtistsData.topartists.artist}}">
+            <!-- template repeat="{{artist in topArtistsData.topartists.artist}}" -->
               <li>{{artist.name}}</li>
-            </template>
+            <!-- /template -->
           </ol>
         </section>
-      </template>
+      <!-- /template -->
     </div>
-
   </template>
+</dom-module>
 
-  <script>
-
-    Polymer('lastfm-card', {
+<script>
+  Polymer({
+    is: 'lastfm-card',
+    properties: {
       /**
        * The API key used to authenticate with Last.fm's API
        * This should ideally be changed to your own key.
        *
        * @attribute apiKey
-       * @type string
+       * @type String
        * @default d8cacd3e0cc258e27cf95e491f65760d
        */
-      apiKey: 'd8cacd3e0cc258e27cf95e491f65760d',
-      /**
-       * The `getInfo` object contains properties used in ajax request.
-       *
-       * @property getInfo
-       * @type object
-       */
-      created: function() {
-        this.getInfo = {
-          info: 'user.getinfo',
-          recentTracks: 'user.getRecentTracks',
-          topArtists: 'user.getTopArtists',
-          recentTracksLimit: 3,
-          topArtistsLimit: 5
-        }
+      apiKey: {
+        type: String,
+        value: 'd8cacd3e0cc258e27cf95e491f65760d'
       },
       /**
        * The `user` attribute is the only mandatory parameter.
        *
        * @attribute user
-       * @type string
+       * @type String
+       * @default granzebru
        */
-      user: 'granzebru',
+      user: {
+        type: String,
+        value: 'granzebru'
+      },
       /**
        * The `paintItBlack` attribute specify the widget color.
        *
        * @attribute paintItBlack
-       * @type boolean
+       * @type Boolean
        * @default false
        */
-      paintItBlack: false,
+      paintItBlack: {
+        type: Boolean,
+        value: false
+      },
       /**
        * The `recentTracks` attribute specify if you want to show the recent played tracks.
        *
        * @attribute recentTracks
-       * @type boolean
+       * @type Boolean
        * @default false
        */
-      recentTracks: false,
+      recentTracks: {
+        type: Boolean,
+        value: false
+      },
       /**
        * The `topArtists` attribute specify if you want to show the top artists.
        *
        * @attribute topArtists
-       * @type boolean
+       * @type Boolean
        * @default false
        */
-      topArtists: false,
-      /**
-       * The `numberToArray` method is a filter used to stylize the player count.
-       *
-       * @method numberToArray
-       *
-       */
-      numberToArray: function(number) {
-        return (number || '').split('');
-      },
-      /**
-       * The `dateConverter` method is a filter used to format the date.
-       *
-       * @method dateConverter
-       *
-       */
-      dateConverter: function(value) {
-        if(typeof value !== 'undefined') {
-          var d = new Date(value*1000);
-          return d.toDateString().substr(4);
-        }
+      topArtists: {
+        type: Boolean,
+        value: false
       }
-    });
-  </script>
-
-</polymer-element>
+    },
+    /**
+     * The `getInfo` object contains properties used in ajax request.
+     *
+     * @property getInfo
+     * @type object
+     * @private
+     */
+    created: function() {
+      this.getInfo = {
+        info: 'user.getinfo',
+        recentTracks: 'user.getRecentTracks',
+        topArtists: 'user.getTopArtists',
+        recentTracksLimit: 3,
+        topArtistsLimit: 5
+      }
+    },
+    /**
+     * The `numberToArray` method is a filter used to stylize the player count.
+     *
+     * @method numberToArray
+     * @private
+     */
+    numberToArray: function(number) {
+      return (number || '').split('');
+    },
+    /**
+     * The `dateConverter` method is a filter used to format the date.
+     *
+     * @method dateConverter
+     * @private
+     */
+    dateConverter: function(value) {
+      if(typeof value !== 'undefined') {
+        var d = new Date(value*1000);
+        return d.toDateString().substr(4);
+      }
+    }
+  });
+</script>
