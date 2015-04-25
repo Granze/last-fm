@@ -5,6 +5,7 @@
   <title>lastfm-card Demo</title>
 
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link href="//fonts.googleapis.com/css?family=RobotoDraft:300,400,500" rel="stylesheet">
   <link rel="import" href="../lastfm-card.html">
   <style>
     *,
@@ -14,33 +15,44 @@
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
     }
-    a {
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "RobotoDraft",Helvetica,Arial,sans-serif;
       color: #333;
+      background: #fff;
+    }
+    a {
+      color: #fff;
     }
     a:hover {
-      color: #ccc;
       text-decoration: none;
-      background-color: #000;
     }
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      color: #333;
+    h1 {
+      margin: 0 auto;
+      font-weight: normal;
+    }
+    h1 span {
       font-size: 14px;
-      background-color: #ccc;
-      overflow-y: scroll;
+    }
+    h2 {
+      font-size: 34px;
+      margin: 30px 0 10px;
+    }
+    header {
+      position: relative;
+      padding: 20px;
+      color: #fff;
+      background-color: #536dfe;
     }
     fieldset {
       border: none;
-    }
-    h1 {
-      font-size: 26px;
-      text-align: center;
     }
     .center {
       text-align: center;
     }
     .wrapper {
-      width: 800px;
+      max-width: 800px;
       font-size: 0;
       margin: 30px auto;
     }
@@ -99,8 +111,12 @@
   </script>
 </head>
 <body>
+<header>
+  <h1>&lt;lastfm-card&gt;</h1>
+  <p>An element that fetch basic last.fm info for a given user made with <a href="https://www.polymer-project.org">Polymer</a></p>
+</header>
+  <a href="https://github.com/Granze/lastfm-card"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
   <div class="wrapper">
-    <h1>&lt;lastfm-card&gt;&lt;/lastfm-card&gt;</h1>
     <div class="col">
       <div class="config">
 
