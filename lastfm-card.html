@@ -166,7 +166,7 @@ Element that provide basic last.fm card containing info for a given user.
   </style>
 
 
-  <template is="dom-bind">
+  <template>
 
     <iron-ajax auto id="userajax"
                url="http://ws.audioscrobbler.com/2.0/"
@@ -255,7 +255,7 @@ Element that provide basic last.fm card containing info for a given user.
         user: user,
         api_key: apiKey,
         format: format
-      }
+      };
     },
     /**
      * The `numberToArray` method is a filter used to stylize the player count.
