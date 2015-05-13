@@ -165,16 +165,35 @@ Element that provide basic last.fm card containing info for a given user.
     }
   </style>
 
-
   <template>
 
     <iron-ajax auto id="userajax"
                url="http://ws.audioscrobbler.com/2.0/"
-               params="[[ajaxParams(method, user, apiKey, format)]]"
+               params="[[ajaxParams(user, apiKey)]]"
                handleas="json" last-response="{{info}}">
     </iron-ajax>
+
     <div class="card">
-      <span>{{info.user.name}}</span>
+      <header class="paintItBlack">
+      <a href="http://www.last.fm" class="logo"></a>
+    </header>
+      <section class="profile">
+        <figure class="frame">
+          <img src="[[info.user.image.2.#text]]" alt="">
+        </figure>
+        <div class="personal-info">
+          <h1><a href="[[info.user.url]]">[[info.user.name]]</a></h1>
+        </div>
+        <p>
+          <strong id="plays">
+            <template is="dom-repeat" items="{{numberToArray(info.user.playcount)}}">
+              <span class="count-bg">{{item}}</span>
+            </template>
+          </strong>
+          <strong>&nbsp;plays</strong>
+        </p>
+        <p>since <span>[[dateConverter(info.user.registered.unixtime)]]</span></p>
+      </section>
     </div>
   </template>
 </dom-module>
@@ -218,17 +237,6 @@ Element that provide basic last.fm card containing info for a given user.
         value: false
       },
       /**
-       * The `recentTracks` attribute specify if you want to show the recent played tracks.
-       *
-       * @attribute recentTracks
-       * @type Boolean
-       * @default false
-       */
-      recentTracks: {
-        type: Boolean,
-        value: false
-      },
-      /**
        * The `topArtists` attribute specify if you want to show the top artists.
        *
        * @attribute topArtists
@@ -238,23 +246,14 @@ Element that provide basic last.fm card containing info for a given user.
       topArtists: {
         type: Boolean,
         value: false
-      },
-      method: {
-        type: String,
-        value: 'user.getinfo'
-      },
-      format: {
-        type: String,
-        value: 'json'
       }
     },
-    //'{"method":"user.getinfo", "user":"granzebru", "api_key":"d8cacd3e0cc258e27cf95e491f65760d", "format":"json"}'
-    ajaxParams: function(method, user, apiKey, format) {
+    ajaxParams: function(user, apiKey) {
       return {
-        method: method,
+        method: 'user.getinfo',
         user: user,
         api_key: apiKey,
-        format: format
+        format: 'json'
       };
     },
     /**
