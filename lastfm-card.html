@@ -182,7 +182,7 @@ Element that provide basic last.fm card containing info for a given user.
           <img src="[[info.user.image.2.#text]]" alt="">
         </figure>
         <div class="personal-info">
-          <h1><a href="[[info.user.url]]">[[info.user.name]]</a></h1>
+          <h1><a href="[[info.user.url]]">{{info.user.name}}</a></h1>
         </div>
         <p>
           <strong id="plays">
@@ -235,19 +235,14 @@ Element that provide basic last.fm card containing info for a given user.
       paintItBlack: {
         type: Boolean,
         value: false
-      },
-      /**
-       * The `topArtists` attribute specify if you want to show the top artists.
-       *
-       * @attribute topArtists
-       * @type Boolean
-       * @default false
-       */
-      topArtists: {
-        type: Boolean,
-        value: false
       }
     },
+    /**
+     * The `ajaxParams` method pass some parameters to the iron-ajax component
+     *
+     * @method ajaxParams
+     * @private
+     */
     ajaxParams: function(user, apiKey) {
       return {
         method: 'user.getinfo',
