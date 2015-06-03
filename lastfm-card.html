@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../iron-image/iron-image.html">
 
 <!--
 Element that provide basic last.fm card containing info for a given user.
@@ -44,11 +45,6 @@ Element that provide basic last.fm card containing info for a given user.
     .card section.profile {
       margin-bottom: 20px;
     }
-    .card section.alt {
-      margin: 0;
-      padding: 10px 20px;
-      background-color: #dfdfdf;
-    }
     .card section > h3 {
       margin: -10px -20px 0 -20px;
       padding: 4px 20px 2px 20px;
@@ -71,13 +67,6 @@ Element that provide basic last.fm card containing info for a given user.
       border-bottom: 1px solid #9f081e;
       box-shadow: rgba(0,0,0,0.3) 0 2px 5px;
     }
-    .card header.black {
-      background-color: #4B4B4B;
-      background-image: -webkit-linear-gradient(#4B4B4B, #333);
-      background-image: linear-gradient(#4B4B4B, #333);
-      border: 1px solid #2C2C2C;
-      border-bottom: 1px solid #111;
-    }
     .logo {
       position: absolute;
       left: 20px;
@@ -95,9 +84,6 @@ Element that provide basic last.fm card containing info for a given user.
     .profile p {
       margin: 6px 0;
     }
-    #plays {
-      font-size: 0;
-    }
     .count-bg {
       display: inline-block;
       margin-right: 2px;
@@ -108,11 +94,7 @@ Element that provide basic last.fm card containing info for a given user.
       background: -webkit-linear-gradient(top, #000000 0%, #3f3f3f 40%, #6b6b6b 50%, #3f3f3f 60%, #000000 100%);
       background: linear-gradient(to bottom,  #000000 0%,#3f3f3f 40%,#6b6b6b 50%,#3f3f3f 60%,#000000 100%);
     }
-    .loading, .no-user {
-      margin: 20px 0;
-      text-align: center;
-    }
-    .frame {
+    .profile-image {
       position: absolute;
       left: 0;
       top: 0;
@@ -126,10 +108,6 @@ Element that provide basic last.fm card containing info for a given user.
       border-radius: 4px;
       background-color: #333;
     }
-    .frame img {
-      display: block;
-      border-radius: 4px;
-    }
     h1 {
       margin: 0 0 20px 0;
       padding: 0;
@@ -138,61 +116,32 @@ Element that provide basic last.fm card containing info for a given user.
     h1 a {
       text-decoration: none;
     }
-    section ul {
-      padding: 0;
-      list-style: none;
-    }
-    section ol {
-      padding: 0;
-      list-style-position: inside;
-    }
-    section li {
-      overflow: hidden;
-      margin-bottom: 10px;
-    }
-    .recent-tracks li img {
-      float: left;
-      margin-right: 10px;
-      width: 64px;
-      height: 64px;
-      background-color: #333;
-    }
-    .recent-tracks li[nowplaying] {
-      background: transparent url(img/icon-eq.gif) no-repeat right top;
-    }
-    .recent-tracks p {
-      margin: 10px 0 0 0;
-    }
   </style>
 
   <template>
 
     <iron-ajax auto id="userajax"
                url="http://ws.audioscrobbler.com/2.0/"
-               params="[[ajaxParams(user, apiKey)]]"
+               params="[[_ajaxParams(user, apiKey)]]"
                handleas="json" last-response="{{info}}">
     </iron-ajax>
 
     <div class="card">
-      <header class="paintItBlack">
-      <a href="http://www.last.fm" class="logo"></a>
-    </header>
+      <header>
+        <a href="http://www.last.fm" class="logo"></a>
+      </header>
       <section class="profile">
-        <figure class="frame">
-          <img src="[[info.user.image.2.#text]]" alt="">
-        </figure>
-        <div class="personal-info">
-          <h1><a href="[[info.user.url]]">{{info.user.name}}</a></h1>
-        </div>
+        <iron-image class="profile-image" preload fade src="{{info.user.image.2.#text}}"></iron-image>
+        <h1><a href="[[info.user.url]]">[[info.user.name]]</a></h1>
         <p>
           <strong id="plays">
-            <template is="dom-repeat" items="{{numberToArray(info.user.playcount)}}">
+            <template is="dom-repeat" items="[[_numberToArray(info.user.playcount)]]">
               <span class="count-bg">{{item}}</span>
             </template>
           </strong>
           <strong>&nbsp;plays</strong>
         </p>
-        <p>since <span>[[dateConverter(info.user.registered.unixtime)]]</span></p>
+        <p>since <span>[[_dateConverter(info.user.registered.unixtime)]]</span></p>
       </section>
     </div>
   </template>
@@ -224,17 +173,6 @@ Element that provide basic last.fm card containing info for a given user.
       user: {
         type: String,
         value: 'granzebru'
-      },
-      /**
-       * The `paintItBlack` attribute specify the widget color.
-       *
-       * @attribute paintItBlack
-       * @type Boolean
-       * @default false
-       */
-      paintItBlack: {
-        type: Boolean,
-        value: false
       }
     },
     /**
@@ -243,7 +181,7 @@ Element that provide basic last.fm card containing info for a given user.
      * @method ajaxParams
      * @private
      */
-    ajaxParams: function(user, apiKey) {
+    _ajaxParams: function(user, apiKey) {
       return {
         method: 'user.getinfo',
         user: user,
@@ -257,7 +195,7 @@ Element that provide basic last.fm card containing info for a given user.
      * @method numberToArray
      * @private
      */
-    numberToArray: function(number) {
+    _numberToArray: function(number) {
       return (number || '').split('');
     },
     /**
@@ -266,7 +204,7 @@ Element that provide basic last.fm card containing info for a given user.
      * @method dateConverter
      * @private
      */
-    dateConverter: function(value) {
+    _dateConverter: function(value) {
       if(typeof value !== 'undefined') {
         var d = new Date(value*1000);
         return d.toDateString().substr(4);

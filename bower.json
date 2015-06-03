@@ -21,11 +21,12 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#v0.9.0-rc.1",
-    "iron-ajax": "PolymerElements/iron-ajax#^0.9.0"
+    "polymer": "Polymer/polymer#^1.0.0",
+    "iron-ajax": "PolymerElements/iron-ajax#^1.0.0",
+    "iron-image": "PolymerElements/iron-image#^1.0.0"
   },
   "devDependencies": {
-    "iron-doc-viewer": "PolymerElements/iron-doc-viewer#^0.9.0",
+    "iron-doc-viewer": "PolymerElements/iron-doc-viewer#^1.0.0",
     "web-component-tester": "*"
   }
 }

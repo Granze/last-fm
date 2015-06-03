@@ -45,38 +45,20 @@
       color: #fff;
       background-color: #536dfe;
     }
-    fieldset {
-      border: none;
-    }
-    .center {
-      text-align: center;
-    }
     .wrapper {
       max-width: 800px;
       font-size: 0;
       margin: 30px auto;
     }
-    .col {
-      width: 400px;
-      font-size: 14px;
-      display: inline-block;
-      vertical-align: top;
-    }
-    .config {
+    form {
       margin-bottom: 20px;
       text-align: center;
     }
-    form {
-      text-align: left;
-    }
     input[type=text] {
+      margin: 0 auto;
       padding: 10px 4px;
       width: 350px;
       color: #333;
-    }
-    label {
-      display: inline-block;
-      margin-bottom: 10px;
     }
     lastfm-card {
       margin: 0 auto;
@@ -85,27 +67,12 @@
   <script>
     window.onload = function() {
       var userForm = document.forms[0],
-          card = document.getElementsByTagName('lastfm-card')[0],
-          check = document.querySelectorAll('input[type="checkbox"]');
+          card = document.getElementsByTagName('lastfm-card')[0];
 
       userForm.addEventListener('submit', function (event) {
         event.preventDefault();
         var user = document.getElementById('username').value;
         card.setAttribute('user', user);
-      });
-
-      document.getElementById('options').addEventListener('click', function (e) {
-        switch (e.target.id) {
-          case 'recent':
-            card.setAttribute('recentTracks', e.target.checked);
-          break;
-          case 'top':
-            card.setAttribute('topArtists', e.target.checked);
-          break;
-          case 'black':
-            card.setAttribute('paintItBlack', e.target.checked);
-        }
-
       });
     }
   </script>
@@ -117,32 +84,10 @@
 </header>
   <a href="https://github.com/Granze/lastfm-card"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
   <div class="wrapper">
-    <div class="col">
-      <div class="config">
-
-        <form id="user-form">
-          <label>
-            <input id="username" type="text" placeholder="Enter a Last.fm username + press enter" autocomplete="off">
-          </label>
-          <br>
-          <fieldset id="options">
-            <input type="checkbox" id="recent">
-            <label for="recent">Show recent tracks</label>
-            <br>
-            <input type="checkbox" id="top">
-            <label for="top">Show top artists</label>
-            <br>
-            <input type="checkbox" id="black">
-            <label for="black">Paint it black</label>
-          </fieldset>
-        </form>
-      </div>
-    </div>
-    <div class="col">
-      <lastfm-card></lastfm-card>
-    </div>
+    <form id="user-form">
+      <input id="username" type="text" placeholder="Enter a Last.fm username + press enter" autocomplete="off">
+    </form>
+    <lastfm-card></lastfm-card>
   </div>
-  <p class="center"><a href="https://github.com/Granze/lastfm-card">Source code on Github</a> | Follow me on twitter <a href="https://twitter.com/granze">@granze</a></p>
-
 </body>
 </html>
