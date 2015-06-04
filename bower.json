@@ -26,7 +26,7 @@
     "iron-image": "PolymerElements/iron-image#^1.0.0"
   },
   "devDependencies": {
-    "iron-doc-viewer": "PolymerElements/iron-doc-viewer#^1.0.0",
-    "web-component-tester": "*"
+    "web-component-tester": "*",
+    "iron-component-page": "PolymerElements/iron-component-page#~1.0.4"
   }
 }
