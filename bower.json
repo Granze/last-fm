@@ -1,6 +1,6 @@
 {
   "name": "lastfm-card",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "authors": [
     "Maurizio Mangione <granzebru@gmail.com>"
   ],
@@ -21,7 +21,12 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "~0.5.1",
-    "core-ajax": "Polymer/core-ajax#~0.5.1"
+    "polymer": "Polymer/polymer#^1.0.0",
+    "iron-ajax": "PolymerElements/iron-ajax#^1.0.0",
+    "iron-image": "PolymerElements/iron-image#^1.0.0"
+  },
+  "devDependencies": {
+    "iron-doc-viewer": "PolymerElements/iron-doc-viewer#^1.0.0",
+    "web-component-tester": "*"
   }
 }
