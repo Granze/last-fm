@@ -10,7 +10,7 @@ See the [component page](http://Granze.github.io/lastfm-card) for more informati
 
 ## Demo
 
-> [Check it live](http://granze.github.io/lastfm-card/components/lastfm-card/demo.html).
+> [Check it live](http://granze.github.io/lastfm-card/components/lastfm-card/demo).
 
 ## Installation
 
