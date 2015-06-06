@@ -119,6 +119,10 @@ Element that provide basic last.fm card containing info for a given user.
     h1 a {
       text-decoration: none;
     }
+    .user-error {
+      padding: 10px 0;
+      text-align: center;
+    }
   </style>
 
   <template>
@@ -133,19 +137,24 @@ Element that provide basic last.fm card containing info for a given user.
       <header>
         <a href="http://www.last.fm" class="logo"></a>
       </header>
-      <section class="profile">
-        <iron-image class="profile-image" preload fade src="{{info.user.image.2.#text}}"></iron-image>
-        <h1><a href="[[info.user.url]]">[[info.user.name]]</a></h1>
-        <p>
-          <strong id="plays">
-            <template is="dom-repeat" items="[[_numberToArray(info.user.playcount)]]">
-              <span class="count-bg">{{item}}</span>
-            </template>
-          </strong>
-          <strong>&nbsp;plays</strong>
-        </p>
-        <p>since <span>[[_dateConverter(info.user.registered.unixtime)]]</span></p>
-      </section>
+      <template is="dom-if" if="[[!info.error]]">
+        <section class="profile">
+          <iron-image class="profile-image" preload fade src="[[info.user.image.2.#text]]"></iron-image>
+          <h1><a href="[[info.user.url]]">[[info.user.name]]</a></h1>
+          <p>
+            <strong id="plays">
+              <template is="dom-repeat" items="[[_numberToArray(info.user.playcount)]]">
+                <span class="count-bg">{{item}}</span>
+              </template>
+            </strong>
+            <strong>&nbsp;plays</strong>
+          </p>
+          <p>since <span>[[_dateConverter(info.user.registered.unixtime)]]</span></p>
+        </section>
+      </template>
+      <template is="dom-if" if="[[info.error]]">
+        <p class="user-error">[[info.message]]</p>
+      </template>
     </div>
   </template>
 </dom-module>
@@ -175,7 +184,7 @@ Element that provide basic last.fm card containing info for a given user.
        */
       user: {
         type: String,
-        value: 'granzebru'
+        value: null
       }
     },
     /**
