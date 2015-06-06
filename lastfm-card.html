@@ -119,7 +119,7 @@ Element that provide basic last.fm card containing info for a given user.
     h1 a {
       text-decoration: none;
     }
-    .user-error {
+    .info-error {
       padding: 10px 0;
       text-align: center;
     }
@@ -153,7 +153,7 @@ Element that provide basic last.fm card containing info for a given user.
         </section>
       </template>
       <template is="dom-if" if="[[info.error]]">
-        <p class="user-error">[[info.message]]</p>
+        <p class="info-error">[[info.message]]</p>
       </template>
     </div>
   </template>
@@ -169,22 +169,22 @@ Element that provide basic last.fm card containing info for a given user.
        *
        * @attribute apiKey
        * @type String
-       * @default d8cacd3e0cc258e27cf95e491f65760d
+       * @default ''
        */
       apiKey: {
         type: String,
-        value: 'd8cacd3e0cc258e27cf95e491f65760d'
+        value: ''
       },
       /**
        * The `user` attribute is the only mandatory parameter.
        *
        * @attribute user
        * @type String
-       * @default granzebru
+       * @default ''
        */
       user: {
         type: String,
-        value: null
+        value: ''
       }
     },
     /**
