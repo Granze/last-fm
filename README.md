@@ -25,7 +25,7 @@ Install using [Bower](http://bower.io):
 | Attribute    | Type    | Default   | Description                         |
 |--------------|---------|-----------|-------------------------------------|
 | `apiKey`       | string  |           | Your last.fm API key                |
-| `user`         | string  | granzebru | The username you'll fetch data for. |
+| `user`         | string  |  | The username you'll fetch data for. |
 
 ## License
 
