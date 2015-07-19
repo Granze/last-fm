@@ -6,7 +6,7 @@
 
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
   <link href="//fonts.googleapis.com/css?family=RobotoDraft:300,400,500" rel="stylesheet">
-  <link rel="import" href="../lastfm-card.html">
+  <link rel="import" href="../last-fm.html">
   <style>
     *,
     *:before,
@@ -59,14 +59,14 @@
       width: 350px;
       color: #333;
     }
-    lastfm-card {
+    last-fm-profile {
       margin: 0 auto;
     }
   </style>
   <script>
     window.onload = function() {
       var userForm = document.forms[0],
-          card = document.getElementsByTagName('lastfm-card')[0];
+          card = document.getElementsByTagName('last-fm-profile')[0];
 
       userForm.addEventListener('submit', function (event) {
         event.preventDefault();
@@ -86,7 +86,7 @@
     <form id="user-form">
       <input id="username" type="text" placeholder="Enter a Last.fm username + press enter" autocomplete="off">
     </form>
-    <lastfm-card api-key="d8cacd3e0cc258e27cf95e491f65760d" user="granzebru"></lastfm-card>
+    <last-fm user="spar" modules="profile"></last-fm>
   </div>
 </body>
 </html>

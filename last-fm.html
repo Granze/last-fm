@@ -1,0 +1,61 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="last-fm-state.html">
+
+<dom-module id="last-fm">
+  <template></template>
+  <script>
+    Polymer({
+      is: 'last-fm',
+      properties: {
+        /**
+         * The API key used to authenticate with Last.fm's API
+         * This should ideally be changed to your own key.
+         *
+         * @attribute apiKey
+         * @type String
+         * @default ''
+         */
+        apiKey: {
+          type: String,
+          value: 'd8cacd3e0cc258e27cf95e491f65760d'
+        },
+        /**
+         * The `user` attribute is the only mandatory parameter.
+         *
+         * @attribute user
+         * @type String
+         * @default ''
+         */
+        user: {
+          type: String,
+          value: 'granzebru'
+        }
+      },
+      /**
+       * The `_importModule` method loads all the modules specified in the "modules" attribute.
+       *
+       * @method _importModule
+       * @private
+       */
+      _importModule: function(modules) {
+        modules.map(function(module) {
+          var moduleName = 'last-fm-' + module;
+          this.importHref(this.resolveUrl(moduleName + '.html'), function() {
+            console.log(moduleName + ' imported!');
+            var content = document.querySelector('last-fm'),
+              element = document.createElement(moduleName);
+
+            content.appendChild(element);
+          }, function() {
+            console.log('error importing module ' + modules);
+          });
+        }.bind(this));
+      },
+      attached: function() {
+        var modules = this.getAttribute('modules').split(' ');
+        this._importModule(modules);
+      }
+    });
+  </script>
+</dom-module>
+

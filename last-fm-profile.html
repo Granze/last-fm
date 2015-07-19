@@ -1,20 +1,9 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-ajax/iron-ajax.html">
 <link rel="import" href="../iron-image/iron-image.html">
+<link rel="import" href="last-fm-state.html">
 
-<!--
-Element that provide basic last.fm card containing info for a given user.
-
-##### Example
-
-    <lastfm-card></lastfm-card>
-
-@element lastfm-card
-@blurb Element that provide basic last.fm card containing info for a given user.
-@status beta
-@homepage http://Granze.github.io/lastfm-card
--->
-<dom-module id="lastfm-card">
+<dom-module id="last-fm-profile">
   <style>
     :host {
       display: block;
@@ -157,70 +146,45 @@ Element that provide basic last.fm card containing info for a given user.
       </template>
     </div>
   </template>
-</dom-module>
-
-<script>
-  Polymer({
-    is: 'lastfm-card',
-    properties: {
+  <script>
+    Polymer({
+      is: 'last-fm-profile',
       /**
-       * The API key used to authenticate with Last.fm's API
-       * This should ideally be changed to your own key.
+       * The `ajaxParams` method pass some parameters to the iron-ajax component
        *
-       * @attribute apiKey
-       * @type String
-       * @default ''
+       * @method ajaxParams
+       * @private
        */
-      apiKey: {
-        type: String,
-        value: ''
+      _ajaxParams: function(user, apiKey) {
+        return  {
+          method: 'user.getinfo',
+          user: user,
+          api_key: apiKey,
+          format: 'json'
+        };
       },
       /**
-       * The `user` attribute is the only mandatory parameter.
+       * The `numberToArray` method is a filter used to stylize the player count.
        *
-       * @attribute user
-       * @type String
-       * @default ''
+       * @method numberToArray
+       * @private
        */
-      user: {
-        type: String,
-        value: ''
+      _numberToArray: function(number) {
+        return (number || '').split('');
+      },
+      /**
+       * The `dateConverter` method is a filter used to format the date.
+       *
+       * @method dateConverter
+       * @private
+       */
+      _dateConverter: function(value) {
+        if(typeof value !== 'undefined') {
+          var d = new Date(value*1000);
+          return d.toDateString().substr(4);
+        }
       }
-    },
-    /**
-     * The `ajaxParams` method pass some parameters to the iron-ajax component
-     *
-     * @method ajaxParams
-     * @private
-     */
-    _ajaxParams: function(user, apiKey) {
-      return {
-        method: 'user.getinfo',
-        user: user,
-        api_key: apiKey,
-        format: 'json'
-      };
-    },
-    /**
-     * The `numberToArray` method is a filter used to stylize the player count.
-     *
-     * @method numberToArray
-     * @private
-     */
-    _numberToArray: function(number) {
-      return (number || '').split('');
-    },
-    /**
-     * The `dateConverter` method is a filter used to format the date.
-     *
-     * @method dateConverter
-     * @private
-     */
-    _dateConverter: function(value) {
-      if(typeof value !== 'undefined') {
-        var d = new Date(value*1000);
-        return d.toDateString().substr(4);
-      }
-    }
-  });
-</script>
+    });
+  </script>
+</dom-module>
+
