@@ -50,8 +50,10 @@
             var content = Polymer.dom(this).node,
                 element = document.createElement(moduleName);
 
-            element.setAttribute('user', '[[user]]');
-            element.setAttribute('api-key', '[[apiKey]]');
+            element.user = Polymer.dom(this).node.user;
+            element.apiKey = Polymer.dom(this).node.apiKey;
+            //element.setAttribute('user', '[[user]]');
+            //element.setAttribute('api-key', '[[apiKey]]');
 
             content.appendChild(element);
           }, function() {
