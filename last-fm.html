@@ -1,7 +1,12 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="last-fm-state.html">
 
 <dom-module id="last-fm">
+  <style>
+    :host {
+      display: block;
+      width: 350px;
+    }
+  </style>
   <template></template>
   <script>
     Polymer({
@@ -17,7 +22,7 @@
          */
         apiKey: {
           type: String,
-          value: 'd8cacd3e0cc258e27cf95e491f65760d'
+          value: ''
         },
         /**
          * The `user` attribute is the only mandatory parameter.
@@ -28,7 +33,7 @@
          */
         user: {
           type: String,
-          value: 'granzebru'
+          value: ''
         }
       },
       /**
@@ -42,8 +47,11 @@
           var moduleName = 'last-fm-' + module;
           this.importHref(this.resolveUrl(moduleName + '.html'), function() {
             console.log(moduleName + ' imported!');
-            var content = document.querySelector('last-fm'),
-              element = document.createElement(moduleName);
+            var content = Polymer.dom(this).node,
+                element = document.createElement(moduleName);
+
+            element.setAttribute('user', '[[user]]');
+            element.setAttribute('api-key', '[[apiKey]]');
 
             content.appendChild(element);
           }, function() {
