@@ -22,8 +22,7 @@
          */
         apiKey: {
           type: String,
-          value: '',
-          notify: true
+          value: ''
         },
         /**
          * The `user` attribute is the only mandatory parameter.
@@ -35,7 +34,7 @@
         user: {
           type: String,
           value: '',
-          notify: true
+          observer: '_userChanged'
         }
       },
       /**
@@ -49,7 +48,7 @@
           var moduleName = 'last-fm-' + module;
           this.importHref(this.resolveUrl(moduleName + '.html'), function() {
             console.log(moduleName + ' imported!');
-            var content = Polymer.dom(this).node,
+            var content = Polymer.dom(this.root),
                 element = document.createElement(moduleName);
 
             element.user = Polymer.dom(this).node.user;
@@ -62,6 +61,14 @@
             console.log('error importing module ' + modules);
           });
         }.bind(this));
+      },
+      _userChanged: function(newValue) {
+        var children = Polymer.dom(this).node._composedChildren;
+        if(children) {
+          children.map(function(child) {
+            child.user = newValue;
+          });
+        }
       },
       attached: function() {
         var modules = this.getAttribute('modules').split(' ');
