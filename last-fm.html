@@ -47,27 +47,22 @@
         modules.map(function(module) {
           var moduleName = 'last-fm-' + module;
           this.importHref(this.resolveUrl(moduleName + '.html'), function() {
-            console.log(moduleName + ' imported!');
+            console.info(module + ' module imported!');
             var content = Polymer.dom(this.root),
-                element = document.createElement(moduleName);
-
-            element.user = Polymer.dom(this).node.user;
-            element.apiKey = Polymer.dom(this).node.apiKey;
-            //element.setAttribute('user', '[[user]]');
-            //element.setAttribute('api-key', '[[apiKey]]');
+                element = this.create(moduleName, {user: this.user, apiKey: this.apiKey});
 
             content.appendChild(element);
           }, function() {
-            console.log('error importing module ' + modules);
+            console.error('error importing module ' + moduleName);
           });
         }.bind(this));
       },
       _userChanged: function(newValue) {
-        var children = Polymer.dom(this).node._composedChildren;
+        var children =  Polymer.dom(this).node.childNodes;
         if(children) {
-          children.map(function(child) {
-            child.user = newValue;
-          });
+          for(var i = 0; i < children.length; i++){
+            children[i].user = newValue;
+          }
         }
       },
       attached: function() {
