@@ -58,7 +58,7 @@
         }.bind(this));
       },
       _userChanged: function(newValue) {
-        var children =  Polymer.dom(this).node.childNodes;
+        var children = Polymer.dom(this).node.childNodes;
         if(children) {
           for(var i = 0; i < children.length; i++){
             children[i].user = newValue;
