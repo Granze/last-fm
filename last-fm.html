@@ -35,6 +35,17 @@
           type: String,
           value: '',
           observer: '_userChanged'
+        },
+        /**
+         * The `modules` attribute specify the modules to be loaded.
+         *
+         * @attribute modules
+         * @type String
+         * @default 'profile'
+         */
+        modules: {
+          type: String,
+          value: 'profile'
         }
       },
       /**
@@ -66,8 +77,7 @@
         }
       },
       attached: function() {
-        var modules = this.getAttribute('modules').split(' ');
-        this._importModule(modules);
+        this._importModule(this.modules.split(' '));
       }
     });
   </script>
