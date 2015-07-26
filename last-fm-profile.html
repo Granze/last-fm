@@ -6,23 +6,9 @@
   <style>
     :host {
       display: block;
-      width: 350px;
-      color: #333;
-      border-radius: 0 0 4px 4px;
-      text-align: left;
-      background-color: #fff;
     }
-    a {
-      color: #333;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .module section {
-      margin: 0 20px;
-    }
-    .module section.profile {
-      margin-bottom: 20px;
+    .module {
+      @apply(--last-fm-module);
     }
     .module section > h3 {
       margin: -10px -20px 0 -20px;
@@ -35,9 +21,8 @@
       background-color: #555555;
     }
     .profile {
-      position: relative;
-      height: 126px;
-      padding-left: 146px;
+      overflow: hidden;
+      padding: 20px 0;
     }
     .profile p {
       margin: 6px 0;
@@ -56,15 +41,13 @@
       background: linear-gradient(to bottom,  #000000 0%,#3f3f3f 40%,#6b6b6b 50%,#3f3f3f 60%,#000000 100%);
     }
     .profile-image {
-      position: absolute;
-      left: 0;
-      top: 0;
+      float: left;
       display: block;
       overflow: hidden;
       width: 126px;
       min-height: 70px;
       max-height: 126px;
-      margin: 0;
+      margin: 0 20px 0 0;
       border: 2px solid #999;
       border-radius: 4px;
       background-color: #333;

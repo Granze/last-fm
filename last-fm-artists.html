@@ -2,6 +2,20 @@
 <link rel="import" href="../iron-ajax/iron-ajax.html">
 
 <dom-module id="last-fm-artists">
+  <style>
+    :host {
+      display: block;
+    }
+    .module {
+      @apply(--last-fm-module);
+    }
+    .module h2 {
+      @apply(--last-fm-h2);
+    }
+    ol {
+      padding: 0 0 0 24px;
+    }
+  </style>
   <template>
     <iron-ajax auto id="userajax"
                url="http://ws.audioscrobbler.com/2.0/"

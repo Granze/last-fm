@@ -3,6 +3,17 @@
 <link rel="import" href="../iron-image/iron-image.html">
 
 <dom-module id="last-fm-tracks">
+  <style>
+    :host {
+      display: block;
+    }
+    .module {
+      @apply(--last-fm-module);
+    }
+    .module h2 {
+      @apply(--last-fm-h2);
+    }
+  </style>
   <template>
     <iron-ajax auto id="userajax"
                url="http://ws.audioscrobbler.com/2.0/"

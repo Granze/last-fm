@@ -3,10 +3,23 @@
 <dom-module id="last-fm">
   <style>
     :host {
-      box-sizing: border-box;
+      --last-fm-module: {
+       padding: 0 20px 10px 20px;
+      };
+      --last-fm-h2: {
+        font-size: 16px;
+        margin: 0 -20px 20px -20px;
+        padding: 6px 20px;
+        background-color: #ccc;
+      };
       display: block;
       width: 350px;
       font-family: Arial, Helvetica, sans-serif;
+      border: 1px solid #ccc;
+    }
+    /deep/ a {color: #333;}
+    * {
+      box-sizing: border-box;
     }
     header.last-fm {
       position: relative;
