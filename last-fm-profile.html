@@ -10,19 +10,9 @@
     .module {
       @apply(--last-fm-module);
     }
-    .module section > h3 {
-      margin: -10px -20px 0 -20px;
-      padding: 4px 20px 2px 20px;
-      font-size: 14px;
-      text-shadow: #333 -1px -1px 1px;
-      border-bottom: 2px solid #222;
-      font-weight: normal;
-      color: #dfdfdf;
-      background-color: #555555;
-    }
     .profile {
       overflow: hidden;
-      padding: 20px 0;
+      padding: 20px 0 5px 0;
     }
     .profile p {
       margin: 6px 0;
@@ -44,18 +34,16 @@
       float: left;
       display: block;
       overflow: hidden;
-      width: 126px;
+      width: 130px;
       min-height: 70px;
-      max-height: 126px;
+      max-height: 130px;
       margin: 0 20px 0 0;
-      border: 2px solid #999;
-      border-radius: 4px;
-      background-color: #333;
+      border-radius: 50%;
     }
     h1 {
-      margin: 0 0 20px 0;
+      margin: 0 0 10px 0;
       padding: 0;
-      font-size: 18px;
+      font-size: 22px;
     }
     h1 a {
       text-decoration: none;
@@ -77,16 +65,18 @@
       <template is="dom-if" if="[[!info.error]]">
         <section class="profile">
           <iron-image class="profile-image" preload fade src="[[info.user.image.2.#text]]"></iron-image>
-          <h1><a href="[[info.user.url]]">[[info.user.name]]</a></h1>
-          <p>
-            <strong id="plays">
-              <template is="dom-repeat" items="[[_numberToArray(info.user.playcount)]]">
-                <span class="count-bg">{{item}}</span>
-              </template>
-            </strong>
-            <strong>&nbsp;plays</strong>
-          </p>
-          <p>since <span>[[_dateConverter(info.user.registered.unixtime)]]</span></p>
+          <div>
+            <h1><a href="[[info.user.url]]">[[info.user.name]]</a></h1>
+            <p>scrobbling since <br><span>[[_dateConverter(info.user.registered.unixtime)]]</span></p>
+            <p>
+              <strong id="plays">
+                <template is="dom-repeat" items="[[_numberToArray(info.user.playcount)]]">
+                  <span class="count-bg">{{item}}</span>
+                </template>
+              </strong>
+              <p>scrobbles</p>
+            </p>
+          </div>
         </section>
       </template>
       <template is="dom-if" if="[[info.error]]">

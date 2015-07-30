@@ -28,7 +28,7 @@
         <section class="artists">
           <h2>Top Artists:</h2>
           <ol>
-            <template is="dom-repeat" items="{{artists.topartists.artist}}">
+            <template is="dom-repeat" items="[[artists.topartists.artist]]">
               <li>
                 <p><span>[[item.name]]</span> - <span>[[item.playcount]]</span></p>
               </li>
@@ -36,7 +36,9 @@
           </ol>
         </section>
       </template>
-      <template is="dom-if" if="[[artists.error]]"></template>
+      <template is="dom-if" if="[[artists.error]]">
+        <p class="info-error">[[info.message]]</p>
+      </template>
     </div>
   </template>
   <script>

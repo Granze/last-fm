@@ -2,6 +2,9 @@
 
 <dom-module id="last-fm">
   <style>
+    :root {
+      --main-red: #b90000;
+    }
     :host {
       --last-fm-module: {
        padding: 0 20px 10px 20px;
@@ -10,7 +13,7 @@
         font-size: 16px;
         margin: 0 -20px 20px -20px;
         padding: 6px 20px;
-        background-color: #ccc;
+        border-bottom: 2px solid var(--main-red);
       };
       display: block;
       width: 350px;
@@ -25,12 +28,7 @@
       position: relative;
       height: 45px;
       padding: 10px;
-      background-color: #e31b23;
-      background-image: -webkit-linear-gradient(#e31b23, #b32024);
-      background-image: linear-gradient(#e31b23, #b32024);
-      border: 1px solid #a00;
-      border-bottom: 1px solid #9f081e;
-      box-shadow: rgba(0,0,0,0.3) 0 2px 5px;
+      background-color: var(--main-red);
     }
     .logo {
       position: absolute;

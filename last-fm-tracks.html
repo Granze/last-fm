@@ -13,6 +13,20 @@
     .module h2 {
       @apply(--last-fm-h2);
     }
+    .recent {
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .recent p {
+      margin-top: 0;
+    }
+    .song {
+      font-size: 12px;
+    }
+    .album-cover {
+      float: left;
+      margin-right: 20px;
+    }
   </style>
   <template>
     <iron-ajax auto id="userajax"
@@ -25,13 +39,13 @@
       <template is="dom-if" if="[[!tracks.error]]">
         <section class="tracks">
           <h2>Recent tracks:</h2>
-          <template is="dom-repeat" items="{{tracks.recenttracks.track}}">
-            <iron-image class="" preload fade src="[[item.image.1.#text]]"></iron-image>
-            <p>[[item.artist.#text]]</p>
-            <p>[[item.name]]</p>
-            <p>[[item.album.#text]]</p>
+          <template is="dom-repeat" items="[[tracks.recenttracks.track]]">
+            <div class="recent">
+              <iron-image class="album-cover" preload fade src="[[item.image.1.#text]]"></iron-image>
+              <p class="artist">[[item.artist.#text]]</p>
+              <p class="song">[[item.name]]</p>
+            </div>
           </template>
-
         </section>
       </template>
       <template is="dom-if" if="[[tracks.error]]"></template>
