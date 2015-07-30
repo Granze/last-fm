@@ -1,6 +1,6 @@
 # &lt;lastfm-card&gt;
 
-A [Polymer](http://polymer-project.org) element that fetch basic last.fm info for a given user.
+A [Polymer](http://polymer-project.org) modular element that fetch basic last.fm info for a given user.
 
 #### Screenshot
 
@@ -26,6 +26,7 @@ Install using [Bower](http://bower.io):
 |--------------|---------|-----------|-------------------------------------|
 | `apiKey`       | string  |           | Your last.fm API key                |
 | `user`         | string  |  | The username you'll fetch data for. |
+| `modules`         | string  | profile | Modules you want to load |
 
 ## License
 
