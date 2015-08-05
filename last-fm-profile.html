@@ -23,25 +23,24 @@
     .count-bg {
       display: inline-block;
       margin-right: 2px;
-      padding: 2px 3px 0 3px;
-      font-size: 16px;
+      padding: 2px 4px 0 4px;
+      font-size: 23px;
       color: #fff;
+      border-radius: 3px;
       background: #000000;
-      background: -webkit-linear-gradient(top, #000000 0%, #3f3f3f 40%, #6b6b6b 50%, #3f3f3f 60%, #000000 100%);
-      background: linear-gradient(to bottom,  #000000 0%,#3f3f3f 40%,#6b6b6b 50%,#3f3f3f 60%,#000000 100%);
+      background: linear-gradient(to bottom, #333 0%,#444 50%,#333 51%,#222 100%);
     }
     .profile-image {
       float: left;
       display: block;
       overflow: hidden;
       width: 130px;
-      min-height: 70px;
-      max-height: 130px;
+      height: 130px;
       margin: 0 20px 0 0;
       border-radius: 50%;
     }
     h1 {
-      margin: 0 0 10px 0;
+      margin: 10px 0 20px 0;
       padding: 0;
       font-size: 22px;
     }
@@ -64,18 +63,17 @@
     <div class="module">
       <template is="dom-if" if="[[!info.error]]">
         <section class="profile">
-          <iron-image class="profile-image" preload fade src="[[info.user.image.2.#text]]"></iron-image>
+          <iron-image class="profile-image" preload fade src="[[info.user.image.2.#text]]" sizing="cover"></iron-image>
           <div>
             <h1><a href="[[info.user.url]]">[[info.user.name]]</a></h1>
-            <p>scrobbling since <br><span>[[_dateConverter(info.user.registered.unixtime)]]</span></p>
             <p>
               <strong id="plays">
                 <template is="dom-repeat" items="[[_numberToArray(info.user.playcount)]]">
                   <span class="count-bg">{{item}}</span>
-                </template>
+                </template> plays
               </strong>
-              <p>scrobbles</p>
             </p>
+            <p>since <span>[[_dateConverter(info.user.registered.unixtime)]]</span></p>
           </div>
         </section>
       </template>
