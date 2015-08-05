@@ -1,16 +1,12 @@
 # &lt;last-fm&gt;
 
-A [Polymer](http://polymer-project.org) modular element that fetch basic last.fm info for a given user.
+A modular [Polymer](http://polymer-project.org) element that fetch basic last.fm info for a given user.
 
 #### Screenshot
 
-![Lastfm Card](http://i.imgur.com/YpGxS1P.png)
+![Lastfm Card](http://i.imgur.com/XRUas4l.png)
 
 See the [component page](http://Granze.github.io/last-fm) for more information.
-
-## Demo
-
-> [Check it live](http://granze.github.io/last-fm/components/last-fm/demo).
 
 ## Installation
 
