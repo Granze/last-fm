@@ -1,17 +1,17 @@
 {
-  "name": "lastfm-card",
+  "name": "last-fm",
   "version": "0.1.0",
   "authors": [
     "Maurizio Mangione <granzebru@gmail.com>"
   ],
   "description": "A Polymer element that fetch basic last.fm info for a given user",
-  "main": "lastfm-card.html",
+  "main": "last-fm.html",
   "keywords": [
     "web-components",
     "polymer"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/Granze/lastfm-card",
+  "homepage": "https://github.com/Granze/last-fm",
   "ignore": [
     "**/.*",
     "node_modules",
