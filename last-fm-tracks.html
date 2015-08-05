@@ -1,0 +1,80 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../iron-image/iron-image.html">
+
+<dom-module id="last-fm-tracks">
+  <style>
+    :host {
+      display: block;
+    }
+    .module {
+      @apply(--last-fm-module);
+    }
+    .module h2 {
+      @apply(--last-fm-h2);
+    }
+    .recent {
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .recent a {
+      text-decoration: none;
+    }
+    .recent p {
+      margin: 5px 0;
+    }
+    .song {
+      font-size: 13px;
+    }
+    .album-cover {
+      float: left;
+      margin-right: 20px;
+    }
+  </style>
+  <template>
+    <iron-ajax auto id="userajax"
+               url="http://ws.audioscrobbler.com/2.0/"
+               params="[[_ajaxParams(user, apiKey)]]"
+               handleas="json" last-response="{{tracks}}">
+    </iron-ajax>
+
+    <div class="module">
+      <template is="dom-if" if="[[!tracks.error]]">
+        <section class="tracks">
+          <h2>Recent tracks:</h2>
+          <template is="dom-repeat" items="[[tracks.recenttracks.track]]">
+            <div class="recent">
+              <iron-image class="album-cover" preload fade src="[[item.image.1.#text]]"></iron-image>
+              <a href="[[item.url]]">
+                <p class="artist">[[item.artist.#text]]</p>
+                <p class="song">[[item.name]]</p>
+              </a>
+            </div>
+          </template>
+        </section>
+      </template>
+      <template is="dom-if" if="[[tracks.error]]"></template>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'last-fm-tracks',
+      /**
+       * The `ajaxParams` method pass some parameters to the iron-ajax component
+       *
+       * @method ajaxParams
+       * @private
+       */
+      _ajaxParams: function(user, apiKey) {
+        return  {
+          method: 'user.getrecenttracks',
+          user: user,
+          api_key: apiKey,
+          format: 'json',
+          limit: 3
+        };
+      }
+    });
+  </script>
+</dom-module>
+

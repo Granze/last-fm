@@ -1,0 +1,70 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+
+<dom-module id="last-fm-artists">
+  <style>
+    :host {
+      display: block;
+    }
+    .module {
+      @apply(--last-fm-module);
+    }
+    .module h2 {
+      @apply(--last-fm-h2);
+    }
+    .artists ol {
+      padding: 0 0 0 24px;
+    }
+    .artists ol a {
+      display: inline-block;
+      padding: 4px 0;
+      text-decoration: none;
+    }
+  </style>
+  <template>
+    <iron-ajax auto id="userajax"
+               url="http://ws.audioscrobbler.com/2.0/"
+               params="[[_ajaxParams(user, apiKey)]]"
+               handleas="json" last-response="{{artists}}">
+    </iron-ajax>
+
+    <div class="module">
+      <template is="dom-if" if="[[!artists.error]]">
+        <section class="artists">
+          <h2>Top Artists:</h2>
+          <ol>
+            <template is="dom-repeat" items="[[artists.topartists.artist]]">
+              <li>
+                <a href="[[item.url]]"><span>[[item.name]]</span> - <span>[[item.playcount]]</span></a>
+              </li>
+            </template>
+          </ol>
+        </section>
+      </template>
+      <template is="dom-if" if="[[artists.error]]">
+        <p class="info-error">[[info.message]]</p>
+      </template>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'last-fm-artists',
+      /**
+       * The `ajaxParams` method pass some parameters to the iron-ajax component
+       *
+       * @method ajaxParams
+       * @private
+       */
+      _ajaxParams: function(user, apiKey) {
+        return  {
+          method: 'user.getTopArtists',
+          user: user,
+          api_key: apiKey,
+          format: 'json',
+          limit: 5
+        };
+      }
+    });
+  </script>
+</dom-module>
+
