@@ -1,6 +1,6 @@
 # &lt;last-fm&gt;
 
-A modular [Polymer](http://polymer-project.org) element that fetch basic last.fm info for a given user.
+A modular [Polymer](http://polymer-project.org) element that fetch basic last.fm infos for a given user.
 
 #### Screenshot
 
