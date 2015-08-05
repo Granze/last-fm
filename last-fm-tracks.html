@@ -17,11 +17,14 @@
       overflow: hidden;
       margin-bottom: 10px;
     }
+    .recent a {
+      text-decoration: none;
+    }
     .recent p {
       margin-top: 0;
     }
     .song {
-      font-size: 12px;
+      font-size: 13px;
     }
     .album-cover {
       float: left;
@@ -42,8 +45,10 @@
           <template is="dom-repeat" items="[[tracks.recenttracks.track]]">
             <div class="recent">
               <iron-image class="album-cover" preload fade src="[[item.image.1.#text]]"></iron-image>
-              <p class="artist">[[item.artist.#text]]</p>
-              <p class="song">[[item.name]]</p>
+              <a href="[[item.url]]">
+                <p class="artist">[[item.artist.#text]]</p>
+                <p class="song">[[item.name]]</p>
+              </a>
             </div>
           </template>
         </section>

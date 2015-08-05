@@ -12,8 +12,13 @@
     .module h2 {
       @apply(--last-fm-h2);
     }
-    ol {
+    .artists ol {
       padding: 0 0 0 24px;
+    }
+    .artists ol a {
+      display: inline-block;
+      padding: 4px 0;
+      text-decoration: none;
     }
   </style>
   <template>
@@ -30,7 +35,7 @@
           <ol>
             <template is="dom-repeat" items="[[artists.topartists.artist]]">
               <li>
-                <p><span>[[item.name]]</span> - <span>[[item.playcount]]</span></p>
+                <a href="[[item.url]]"><span>[[item.name]]</span> - <span>[[item.playcount]]</span></a>
               </li>
             </template>
           </ol>
