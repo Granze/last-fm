@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="../../webcomponentsjs/webcomponents.min.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <link rel="import" href="../last-fm.html">
+  <link rel="import" href="../last-fm-profile.html">
+  <link rel="import" href="../last-fm-artists.html">
+  <link rel="import" href="../last-fm-tracks.html">
+</head>
+<body>
+<last-fm id="profile" modules="profile"></last-fm>
+<last-fm id="artsts" modules="artists"></last-fm>
+<last-fm id="tracks" modules="tracks"></last-fm>
+<script>
+  describe('<last-fm>', function () {
+
+    context('profile tests', function () {
+
+      it('should display the user name', function () {
+        var el = document.getElementById('profile');
+
+      });
+
+    });
+
+  });
+</script>
+</body>
+</html>
