@@ -18,14 +18,6 @@ Install using [Bower](http://bower.io):
  bower install last-fm
 ```
 
-## Options
-
-| Attribute    | Type    | Default   | Description                         |
-|--------------|---------|-----------|-------------------------------------|
-| `apiKey`       | string  |           | Your last.fm API key                |
-| `user`         | string  |  | The username you'll fetch data for. |
-| `modules`         | string  | profile | Modules you want to load |
-
 ## License
 
 [MIT License](http://opensource.org/licenses/MIT)
