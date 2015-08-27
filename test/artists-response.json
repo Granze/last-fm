@@ -1,0 +1,173 @@
+{
+  "topartists": {
+    "artist": [
+      {
+        "name": "Mr. Oizo",
+        "playcount": "1039",
+        "mbid": "a4a3048f-3968-4848-9f53-94e3d4f88b53",
+        "url": "http://www.last.fm/music/Mr.+Oizo",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/326ffd9bf0bf4e38890762f0777011e9.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/326ffd9bf0bf4e38890762f0777011e9.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/326ffd9bf0bf4e38890762f0777011e9.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/326ffd9bf0bf4e38890762f0777011e9.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/326ffd9bf0bf4e38890762f0777011e9.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "1"
+        }
+      },
+      {
+        "name": "Aphex Twin",
+        "playcount": "912",
+        "mbid": "f22942a1-6f70-4f48-866e-238cb2308fbd",
+        "url": "http://www.last.fm/music/Aphex+Twin",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/eda7f8d4714b46df9fc88913f18c4782.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/eda7f8d4714b46df9fc88913f18c4782.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/eda7f8d4714b46df9fc88913f18c4782.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/eda7f8d4714b46df9fc88913f18c4782.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/eda7f8d4714b46df9fc88913f18c4782.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "2"
+        }
+      },
+      {
+        "name": "Fratelli Calafuria",
+        "playcount": "880",
+        "mbid": "f0e3488c-a07e-48b5-8222-494a8c921b30",
+        "url": "http://www.last.fm/music/Fratelli+Calafuria",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/8c00a1984fd54c519939a856b089a492.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/8c00a1984fd54c519939a856b089a492.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/8c00a1984fd54c519939a856b089a492.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/8c00a1984fd54c519939a856b089a492.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/8c00a1984fd54c519939a856b089a492.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "3"
+        }
+      },
+      {
+        "name": "Sneaker Pimps",
+        "playcount": "875",
+        "mbid": "696d8523-39a0-44e2-9add-afaa183a2f46",
+        "url": "http://www.last.fm/music/Sneaker+Pimps",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/79ab145d268a4f65b4dede39acb79937.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/79ab145d268a4f65b4dede39acb79937.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/79ab145d268a4f65b4dede39acb79937.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/79ab145d268a4f65b4dede39acb79937.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/79ab145d268a4f65b4dede39acb79937.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "4"
+        }
+      },
+      {
+        "name": "Boards of Canada",
+        "playcount": "811",
+        "mbid": "69158f97-4c07-4c4e-baf8-4e4ab1ed666e",
+        "url": "http://www.last.fm/music/Boards+of+Canada",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/0490507223674f3a96d4ae8c4dd903dd.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/0490507223674f3a96d4ae8c4dd903dd.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/0490507223674f3a96d4ae8c4dd903dd.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/0490507223674f3a96d4ae8c4dd903dd.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/0490507223674f3a96d4ae8c4dd903dd.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "5"
+        }
+      }
+    ],
+    "@attr": {
+      "user": "granzebru",
+      "page": "1",
+      "perPage": "5",
+      "totalPages": "463",
+      "total": "2314"
+    }
+  }
+}

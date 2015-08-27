@@ -1,0 +1,37 @@
+{
+  "user": {
+    "name": "granzebru",
+    "realname": "Maurizio M.",
+    "image": [
+      {
+        "#text": "http://img2-ak.lst.fm/i/u/34s/51e434c0bdc14864c84691d249709d01.png",
+        "size": "small"
+      },
+      {
+        "#text": "http://img2-ak.lst.fm/i/u/64s/51e434c0bdc14864c84691d249709d01.png",
+        "size": "medium"
+      },
+      {
+        "#text": "http://img2-ak.lst.fm/i/u/174s/51e434c0bdc14864c84691d249709d01.png",
+        "size": "large"
+      },
+      {
+        "#text": "http://img2-ak.lst.fm/i/u/300x300/51e434c0bdc14864c84691d249709d01.png",
+        "size": "extralarge"
+      }
+    ],
+    "url": "http://www.last.fm/user/granzebru",
+    "country": "Italy",
+    "age": "0",
+    "gender": "m",
+    "subscriber": "FIXME",
+    "playcount": "65568",
+    "playlists": "0",
+    "bootstrap": "0",
+    "registered": {
+      "#text": 1174070883,
+      "unixtime": "1174070883"
+    },
+    "type": "FIXME"
+  }
+}
