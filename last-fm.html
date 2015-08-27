@@ -3,9 +3,15 @@
 <!--
 A Polymer element that fetch basic last.fm info for a given user.
 
+__Note that you should use double quotes in the _modules_ array.__
+
 Example:
 
-    <last-fm user="granzebru" apikey"yourapikeyhere" modules="tracks profile"></last-fm>
+    <last-fm
+      user="granzebru"
+      apikey"yourapikeyhere"
+      modules='["last-fm-profile", "last-fm-artists"]'>
+    </last-fm>
 
 @demo
 -->
@@ -61,24 +67,13 @@ Example:
       is: 'last-fm',
       properties: {
         /**
-         * The API key used to authenticate with Last.fm's API
-         * This should ideally be changed to your own key.
-         *
-         * @attribute apiKey
-         * @type String
-         * @default ''
+         * The API key used to authenticate with Last.fm.
+         * You can get an API key here: http://www.last.fm/api
          */
         apiKey: {
           type: String,
           value: ''
         },
-        /**
-         * The `user` attribute is the only mandatory parameter.
-         *
-         * @attribute user
-         * @type String
-         * @default ''
-         */
         user: {
           type: String,
           value: '',
@@ -86,33 +81,21 @@ Example:
         },
         /**
          * The `modules` attribute specify the modules to be loaded.
-         *
-         * @attribute modules
-         * @type String
-         * @default 'profile'
+         * You need to pass the name without the file extension.
          */
         modules: {
-          type: String,
-          value: 'profile'
+          type: Array,
+          value: ['last-fm-profile']
         }
       },
-      /**
-       * The `_importModule` method loads all the modules specified in the "modules" attribute.
-       *
-       * @method _importModule
-       * @private
-       */
       _importModule: function(modules) {
         modules.map(function(module) {
-          var moduleName = 'last-fm-' + module;
-          this.importHref(this.resolveUrl(moduleName + '.html'), function() {
-            console.info(module + ' module imported!');
-            var content = Polymer.dom(this.root),
-                element = this.create(moduleName, {user: this.user, apiKey: this.apiKey});
+          this.importHref(this.resolveUrl(module + '.html'), function() {
+            var element = this.create(module, {user: this.user, apiKey: this.apiKey});
 
-            content.appendChild(element);
+            Polymer.dom(this.root).appendChild(element);
           }, function() {
-            console.error('error importing module ' + moduleName);
+            console.error('error importing module ' + module);
           });
         }.bind(this));
       },
@@ -125,9 +108,8 @@ Example:
         }
       },
       attached: function() {
-        this._importModule(this.modules.split(' '));
+        this._importModule(this.modules);
       }
     });
   </script>
 </dom-module>
-
