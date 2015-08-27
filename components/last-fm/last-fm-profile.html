@@ -1,0 +1,126 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../iron-image/iron-image.html">
+
+<dom-module id="last-fm-profile">
+  <style>
+    :host {
+      display: block;
+    }
+    .module {
+      @apply(--last-fm-module);
+    }
+    .profile {
+      overflow: hidden;
+      padding: 20px 0 5px 0;
+    }
+    .profile p {
+      margin: 6px 0;
+    }
+    #plays {
+      font-size: 0;
+    }
+    .count-bg {
+      display: inline-block;
+      margin-right: 2px;
+      padding: 2px 4px 0 4px;
+      font-size: 23px;
+      color: #fff;
+      border-radius: 3px;
+      background: #000000;
+      background: linear-gradient(to bottom, #333 0%,#444 50%,#333 51%,#222 100%);
+    }
+    .profile-image {
+      float: left;
+      display: block;
+      overflow: hidden;
+      width: 130px;
+      height: 130px;
+      margin: 0 20px 0 0;
+      border-radius: 50%;
+    }
+    h1 {
+      margin: 10px 0 20px 0;
+      padding: 0;
+      font-size: 22px;
+    }
+    h1 a {
+      text-decoration: none;
+    }
+    .info-error {
+      padding: 10px 0;
+      text-align: center;
+    }
+  </style>
+
+  <template>
+    <iron-ajax auto id="userajax"
+               url="http://ws.audioscrobbler.com/2.0/"
+               params="[[_ajaxParams(user, apiKey)]]"
+               handleas="json" last-response="{{info}}">
+    </iron-ajax>
+
+    <div class="module">
+      <template is="dom-if" if="[[!info.error]]">
+        <section class="profile">
+          <iron-image class="profile-image" preload fade src="[[info.user.image.2.#text]]" sizing="cover"></iron-image>
+          <div>
+            <h1><a href="[[info.user.url]]">[[info.user.name]]</a></h1>
+            <p>
+              <strong id="plays">
+                <template is="dom-repeat" items="[[_numberToArray(info.user.playcount)]]">
+                  <span class="count-bg">{{item}}</span>
+                </template> plays
+              </strong>
+            </p>
+            <p>since <span>[[_dateConverter(info.user.registered.unixtime)]]</span></p>
+          </div>
+        </section>
+      </template>
+      <template is="dom-if" if="[[info.error]]">
+        <p class="info-error">[[info.message]]</p>
+      </template>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'last-fm-profile',
+      /**
+       * The `ajaxParams` method pass some parameters to the iron-ajax component
+       *
+       * @method ajaxParams
+       * @private
+       */
+      _ajaxParams: function(user, apiKey) {
+        return  {
+          method: 'user.getinfo',
+          user: user,
+          api_key: apiKey,
+          format: 'json'
+        };
+      },
+      /**
+       * The `numberToArray` method is a filter used to stylize the player count.
+       *
+       * @method numberToArray
+       * @private
+       */
+      _numberToArray: function(number) {
+        return (number || '').split('');
+      },
+      /**
+       * The `dateConverter` method is a filter used to format the date.
+       *
+       * @method dateConverter
+       * @private
+       */
+      _dateConverter: function(value) {
+        if(typeof value !== 'undefined') {
+          var d = new Date(value*1000);
+          return d.toDateString().substr(4);
+        }
+      }
+    });
+  </script>
+</dom-module>
+

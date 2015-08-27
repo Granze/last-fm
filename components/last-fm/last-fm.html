@@ -1,0 +1,115 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+A Polymer element that fetch basic last.fm info for a given user.
+
+__Note that you should use double quotes in the _modules_ array.__
+
+Example:
+
+    <last-fm
+      user="granzebru"
+      apikey"yourapikeyhere"
+      modules='["last-fm-profile", "last-fm-artists"]'>
+    </last-fm>
+
+@demo
+-->
+
+<dom-module id="last-fm">
+  <style>
+    :root {
+      --main-red: #b90000;
+    }
+    :host {
+      --last-fm-module: {
+       padding: 0 20px 10px 20px;
+       background-color: #fafafa;
+      };
+      --last-fm-h2: {
+        font-size: 16px;
+        margin: 0 -20px 20px -20px;
+        padding: 6px 20px;
+        border-bottom: 2px solid var(--main-red);
+      };
+      display: block;
+      width: 350px;
+      font-family: Arial, Helvetica, sans-serif;
+      border: 1px solid #ccc;
+    }
+    /deep/ a {color: #333;}
+    * {
+      box-sizing: border-box;
+    }
+    header.last-fm {
+      position: relative;
+      height: 45px;
+      padding: 10px;
+      background-color: var(--main-red);
+    }
+    .logo {
+      position: absolute;
+      left: 20px;
+      bottom: 6px;
+      display: inline-block;
+      width: 90px;
+      height: 30px;
+      background-image: url(data:image/png;base64,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);
+    }
+  </style>
+  <template>
+    <header class="last-fm">
+      <a href="http://www.last.fm" class="logo"></a>
+    </header>
+  </template>
+  <script>
+    Polymer({
+      is: 'last-fm',
+      properties: {
+        /**
+         * The API key used to authenticate with Last.fm.
+         * You can get an API key here: http://www.last.fm/api
+         */
+        apiKey: {
+          type: String,
+          value: ''
+        },
+        user: {
+          type: String,
+          value: '',
+          observer: '_userChanged'
+        },
+        /**
+         * The `modules` attribute specify the modules to be loaded.
+         * You need to pass the name without the file extension.
+         */
+        modules: {
+          type: Array,
+          value: ['last-fm-profile']
+        }
+      },
+      _importModule: function(modules) {
+        modules.map(function(module) {
+          this.importHref(this.resolveUrl(module + '.html'), function() {
+            var element = this.create(module, {user: this.user, apiKey: this.apiKey});
+
+            Polymer.dom(this.root).appendChild(element);
+          }, function() {
+            console.error('error importing module ' + module);
+          });
+        }.bind(this));
+      },
+      _userChanged: function(newValue) {
+        var children = Polymer.dom(this).node.childNodes;
+        if(children) {
+          for(var i = 0; i < children.length; i++){
+            children[i].user = newValue;
+          }
+        }
+      },
+      attached: function() {
+        this._importModule(this.modules);
+      }
+    });
+  </script>
+</dom-module>

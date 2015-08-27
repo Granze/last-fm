@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>last-fm Demo</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../last-fm.html">
+  <style is="custom-style">
+    .wrapper {
+      max-width: 800px;
+      margin: 30px auto;
+    }
+    form {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    input[type=text] {
+      margin: 0 auto;
+      padding: 10px 4px;
+      width: 350px;
+      color: #333;
+    }
+    last-fm {
+      margin: 0 auto;
+    }
+  </style>
+  <script>
+    window.onload = function() {
+      var userForm = document.forms[0],
+          card = document.getElementsByTagName('last-fm')[0];
+
+      userForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var user = document.getElementById('username').value;
+        card.setAttribute('user', user);
+      });
+    }
+  </script>
+</head>
+<body>
+  <div class="wrapper">
+    <form id="user-form">
+      <input id="username" type="text" placeholder="Enter a Last.fm username + press enter" autocomplete="off">
+    </form>
+    <last-fm user="granzebru" api-key="d8cacd3e0cc258e27cf95e491f65760d" modules='["last-fm-profile", "last-fm-artists", "last-fm-tracks"]'></last-fm>
+  </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "name": "last-fm",
+  "authors": [
+    "Maurizio Mangione <granzebru@gmail.com>"
+  ],
+  "description": "A Polymer element that fetch basic last.fm info for a given user",
+  "main": "last-fm.html",
+  "keywords": [
+    "web-components",
+    "polymer"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Granze/last-fm",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.1.0",
+    "iron-ajax": "PolymerElements/iron-ajax#^1.0.0",
+    "iron-image": "PolymerElements/iron-image#^1.0.0"
+  },
+  "devDependencies": {
+    "web-component-tester": "*",
+    "iron-component-page": "PolymerElements/iron-component-page#~1.0.5"
+  },
+  "_release": "ee43ab5c93",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "ee43ab5c937eb95cf68d798621d941c55cd2a5bf"
+  },
+  "_source": "git://github.com/granze/last-fm.git",
+  "_target": "master",
+  "_originalSource": "granze/last-fm",
+  "_direct": true
+}
