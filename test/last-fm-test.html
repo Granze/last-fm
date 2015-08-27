@@ -4,28 +4,70 @@
   <meta charset="utf-8">
   <script src="../../webcomponentsjs/webcomponents.min.js"></script>
   <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../test-fixture/test-fixture-mocha.js"></script>
+
+  <link rel="import" href="../../test-fixture/test-fixture.html">
   <link rel="import" href="../last-fm.html">
   <link rel="import" href="../last-fm-profile.html">
   <link rel="import" href="../last-fm-artists.html">
   <link rel="import" href="../last-fm-tracks.html">
+
 </head>
 <body>
-<last-fm id="profile" modules="profile"></last-fm>
-<last-fm id="artsts" modules="artists"></last-fm>
-<last-fm id="tracks" modules="tracks"></last-fm>
-<script>
-  describe('<last-fm>', function () {
 
-    context('profile tests', function () {
+  <test-fixture id="profile">
+    <template>
+      <last-fm modules='["last-fm-profile"]'></last-fm>
+    </template>
+  </test-fixture>
 
-      it('should display the user name', function () {
-        var el = document.getElementById('profile');
+  <test-fixture id="artists">
+    <template>
+      <last-fm modules='["last-fm-artists"]'></last-fm>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="tracks">
+    <template>
+      <last-fm modules='["last-fm-tracks"]'></last-fm>
+    </template>
+  </test-fixture>
+
+  <script>
+
+    describe('<last-fm>', function() {
+
+      var ajax, server, request;
+
+      beforeEach(function() {
+        server = sinon.fakeServer.create();
+        server.autoRespond = true;
+        server.respondWith(
+          'GET',
+          '/profile-response.json',
+          [
+            200,
+            {'Content-Type': 'application/json'},
+            '{"success": "true"}'
+          ]
+        );
+
+      });
+
+      afterEach(function() {
+        server.restore();
+      });
+
+      context('profile tests', function() {
+
+        it('should display the user name', function() {
+
+          expect(request.response).to.be.ok;
+        });
 
       });
 
     });
-
-  });
-</script>
+  </script>
 </body>
 </html>
