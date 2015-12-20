@@ -21,12 +21,11 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.2.0",
-    "iron-ajax": "PolymerElements/iron-ajax#^1.0.0",
-    "iron-image": "PolymerElements/iron-image#^1.0.0"
+    "polymer": "polymer/polymer#^1.2.0",
+    "iron-ajax": "polymerelements/iron-ajax#^1.1.0",
+    "iron-image": "polymerelements/iron-image#^1.0.0"
   },
   "devDependencies": {
-    "web-component-tester": "*",
-    "iron-component-page": "PolymerElements/iron-component-page#~1.0.5"
+    "iron-component-page": "polymerelements/iron-component-page#~1.1.0"
   }
 }
