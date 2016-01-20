@@ -101,11 +101,10 @@ Example:
       },
       _userChanged: function(newValue) {
         var children = Polymer.dom(this).node.childNodes;
-        if(children) {
-          for(var i = 0; i < children.length; i++){
-            children[i].user = newValue;
-          }
-        }
+
+        children && [].forEach.call(children, function(child) {
+          child.user = newValue;
+        });
       },
       attached: function() {
         this._importModule(this.modules);
